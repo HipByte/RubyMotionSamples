@@ -1,4 +1,4 @@
-$:.unshift('../../lib')
+$:.unshift("/Library/Motion/lib")
 require 'motion/project'
 
 #ENV['debug'] ||= '0' # Because the REPL cannot be loaded with CoreImage yet.
