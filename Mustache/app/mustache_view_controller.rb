@@ -5,7 +5,7 @@ class MustacheViewController < UIViewController
   end
 
   def viewDidLoad
-    @images = %w{matz guido kay jmccolor}.map { |name| UIImage.imageNamed(name + '.jpg') }
+    @images = %w{matz guido kay jmccolor liz}.map { |name| UIImage.imageNamed(name + '.jpg') }
     view.image = @images.first
     view.contentMode = UIViewContentModeScaleAspectFit
     view.userInteractionEnabled = true
@@ -55,7 +55,7 @@ class MustacheViewController < UIViewController
       mustacheView.contentMode = UIViewContentModeScaleAspectFit
 
       # Compute its location and size, based on the position of the eyes and
-      # mouth. 
+      # mouth.
       w = feature.bounds.size.width
       h = feature.bounds.size.height / 5
       x = (feature.mouthPosition.x + (feature.leftEyePosition.x + feature.rightEyePosition.x) / 2) / 2 - w / 2
@@ -64,7 +64,7 @@ class MustacheViewController < UIViewController
 
       # Apply a rotation on the mustache, based on the face inclination.
       mustacheAngle = Math.atan2(feature.leftEyePosition.x - feature.rightEyePosition.x, feature.leftEyePosition.y - feature.rightEyePosition.y) + Math::PI/2
-      mustacheView.transform = CGAffineTransformMakeRotation(mustacheAngle) 
+      mustacheView.transform = CGAffineTransformMakeRotation(mustacheAngle)
 
       view.addSubview(mustacheView)
     end
