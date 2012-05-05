@@ -46,7 +46,7 @@ class GestureRecognizer
 
   def updateAddingIndexPathForCurrentLocation
     indexPath = indexPathFromRecognizer(@longPressRecognizer)
-    if indexPath != @addingIndexPath
+    if indexPath && indexPath != @addingIndexPath
       @tableView.beginUpdates
       @tableView.deleteRowsAtIndexPaths([@addingIndexPath], withRowAnimation: UITableViewRowAnimationNone)
       @tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimationNone)
