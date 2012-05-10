@@ -10,7 +10,7 @@ class ViewController < UITableViewController
 
     @rows = ['Swipe to the right to complete', 'Swipe to left to delete', 'Drag down to create a new cell', 'Pinch two rows apart to create cell', 'Long hold to start reorder cell']
     @grabbedObject = nil
-    @tableViewRecognizer = GestureRecognizer.alloc.initWithTableView(self.tableView, delegate:self)
+    @tableViewRecognizer = GestureRecognizer.alloc.init_with_table_view(self.tableView, delegate:self)
   end
 
   def viewWillAppear(animated)
@@ -37,14 +37,14 @@ class ViewController < UITableViewController
 
   def tableView(tableView, cellForRowAtIndexPath: indexPath)
     object = @rows[indexPath.row]
-    backgroundColor = backgroundColorForIndexPath(indexPath)
+    backgroundColor = background_color_for_index_path(indexPath)
 
     if object == AddingCell
       if indexPath.row == 0
         cellIdentifier = 'PullDownTableViewCell'
         cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)
         unless cell
-          cell = TransformableTableViewCell.transformableTableViewCellWithStyle(:pullDown, reuseIdentifier: cellIdentifier)
+          cell = TransformableTableViewCell.transformable_table_view_cell_with_style(:pullDown, reuseIdentifier: cellIdentifier)
           cell.textLabel.adjustsFontSizeToFitWidth = true
           cell.textLabel.textColor = UIColor.whiteColor
           cell.textLabel.textAlignment = UITextAlignmentCenter
@@ -58,7 +58,7 @@ class ViewController < UITableViewController
         cellIdentifier = 'UnfoldingTableViewCell'
         cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)
         unless cell
-          cell = TransformableTableViewCell.transformableTableViewCellWithStyle(:unfolding, reuseIdentifier: cellIdentifier)
+          cell = TransformableTableViewCell.transformable_table_view_cell_with_style(:unfolding, reuseIdentifier: cellIdentifier)
           cell.textLabel.adjustsFontSizeToFitWidth = true
           cell.textLabel.textColor = UIColor.whiteColor
           cell.textLabel.textAlignment = UITextAlignmentCenter
@@ -98,25 +98,25 @@ class ViewController < UITableViewController
     cell
   end
 
-  def gestureRecognizer(gestureRecognizer, needsAddRowAtIndexPath: indexPath)
+  def gesture_recognizer(gestureRecognizer, needsAddRowAtIndexPath: indexPath)
     @rows.insert(indexPath.row, AddingCell)
   end
 
-  def gestureRecognizer(gestureRecognizer, needsCommitRowAtIndexPath: indexPath)
+  def gesture_recognizer(gestureRecognizer, needsCommitRowAtIndexPath: indexPath)
     @rows[indexPath.row] = 'Added!'
     cell = tableView.cellForRowAtIndexPath(indexPath)
     cell.finishedHeight = NormalCellFinishingHeight
     cell.textLabel.text = 'Just Added!'
   end
 
-  def gestureRecognizer(gestureRecognizer, needsDiscardRowAtIndexPath: indexPath)
+  def gesture_recognizer(gestureRecognizer, needsDiscardRowAtIndexPath: indexPath)
     @rows.delete_at(indexPath.row)
   end
 
-  def gestureRecognizer(gestureRecognizer, didEnterEditingState: state, forRowAtIndexPath: indexPath)
+  def gesture_recognizer(gestureRecognizer, didEnterEditingState: state, forRowAtIndexPath: indexPath)
     backgroundColor = case state
       when :middle
-        backgroundColorForIndexPath(indexPath)
+        background_color_for_index_path(indexPath)
       when :right
         UIColor.greenColor
       else
@@ -128,11 +128,11 @@ class ViewController < UITableViewController
     cell.tintColor = backgroundColor if cell.kind_of? TransformableTableViewCell
   end
 
-  def gestureRecognizer(gestureRecognizer, canEditRowAtIndexPath: indexPath)
+  def gesture_recognizer(gestureRecognizer, canEditRowAtIndexPath: indexPath)
     true
   end
 
-  def gestureRecognizer(gestureRecognizer, commitEditingState: state, forRowAtIndexPath: indexPath)
+  def gesture_recognizer(gestureRecognizer, commitEditingState: state, forRowAtIndexPath: indexPath)
     tableView.beginUpdates
     case state
     when :left
@@ -144,30 +144,30 @@ class ViewController < UITableViewController
     end
     tableView.endUpdates
 
-    tableView.performSelector(:"reloadVisibleRowsExceptIndexPath:", withObject: indexPath, afterDelay: GestureRecognizer::RowAnimationDuration)
+    tableView.performSelector(:"reload_visible_rows_except_index_path:", withObject: indexPath, afterDelay: GestureRecognizer::RowAnimationDuration)
   end
 
-  def gestureRecognizer(gestureRecognizer, canMoveRowAtIndexPath: indexPath)
+  def gesture_recognizer(gestureRecognizer, canMoveRowAtIndexPath: indexPath)
     true
   end
 
-  def gestureRecognizer(gestureRecognizer, needsCreatePlaceholderForRowAtIndexPath: indexPath)
+  def gesture_recognizer(gestureRecognizer, needsCreatePlaceholderForRowAtIndexPath: indexPath)
     @grabbedObject = @rows[indexPath.row]
     @rows[indexPath.row] = DummyCell
   end
 
-  def gestureRecognizer(gestureRecognizer, needsMoveRowAtIndexPath: sourceIndexPath, toIndexPath: destinationIndexPath)
+  def gesture_recognizer(gestureRecognizer, needsMoveRowAtIndexPath: sourceIndexPath, toIndexPath: destinationIndexPath)
     object = @rows[sourceIndexPath.row]
     @rows.delete_at(sourceIndexPath.row)
     @rows.insert(destinationIndexPath.row, object)
   end
 
-  def gestureRecognizer(gestureRecognizer, needsReplacePlaceholderForRowAtIndexPath: indexPath)
+  def gesture_recognizer(gestureRecognizer, needsReplacePlaceholderForRowAtIndexPath: indexPath)
     @rows[indexPath.row] = @grabbedObject
     @grabbedObject = nil
   end
 
-  def backgroundColorForIndexPath(indexPath)
+  def background_color_for_index_path(indexPath)
     UIColor.redColor.colorWithHueOffset(0.12 * indexPath.row / @rows.count)
   end
 end

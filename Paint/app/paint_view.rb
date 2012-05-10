@@ -49,7 +49,7 @@ class PaintView < UIView
     @previousPoint = nil
   end
 
-  def eraseContent
+  def erase_content
     @paths.clear
     @eraseSound.play
     setNeedsDisplay

@@ -6,7 +6,7 @@ class LocationsController < UITableViewController
   def viewWillAppear(animated)
     navigationItem.title = 'Locations'
     navigationItem.leftBarButtonItem = editButtonItem
-    navigationItem.rightBarButtonItem = UIBarButtonItem.alloc.initWithBarButtonSystemItem(UIBarButtonSystemItemAdd, target:self, action:'addLocation')
+    navigationItem.rightBarButtonItem = UIBarButtonItem.alloc.initWithBarButtonSystemItem(UIBarButtonSystemItemAdd, target:self, action:'add_location')
 
     # The Add button is disabled by default, and will be enabled once the location manager is ready to return the current location.
     navigationItem.rightBarButtonItem.enabled = false
@@ -17,7 +17,7 @@ class LocationsController < UITableViewController
     end
   end
 
-  def addLocation
+  def add_location
     LocationsStore.shared.add_location do |location|
       # We set up our new Location object here.
       coordinate = @location_manager.location.coordinate
