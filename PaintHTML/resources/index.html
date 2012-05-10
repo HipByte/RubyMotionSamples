@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+<title>Sketch</title>
+<style>
+body
+{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+canvas
+{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+</style>
+</head>
+<body>
+
+<canvas id="canvas"></canvas>
+
+<script>
+var canvas = document.getElementById('canvas');
+canvas.width = canvas.offsetWidth;
+canvas.height = canvas.offsetHeight;
+var context = canvas.getContext("2d");
+
+var isDown = false;
+var stroke = [];
+var strokes = {};
+var pixels;
+
+clearCanvas();
+
+context.lineWidth = 5;
+context.lineCap = 'round';
+context.strokeStyle = 'white';
+
+canvas.addEventListener('mousedown', mouseDown, false);
+canvas.addEventListener('mousemove', mouseMove, false);
+canvas.addEventListener('mouseup', mouseUpOrOut, false);
+canvas.addEventListener('mouseout', mouseUpOrOut, false);
+
+canvas.addEventListener('touchstart', touchStart, false);
+canvas.addEventListener('touchmove', touchMove, false);
+canvas.addEventListener('touchend', touchEnd, false);
+
+canvas.addEventListener('touchstart', function(e) { e.preventDefault() }, false);
+
+function getMousePosition(e) {
+  var p = {};
+  if (e.pageX || e.pageY) {
+    p.x = e.pageX;
+    p.y = e.pageY;
+  }
+  else {
+    p.x = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+    p.y = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+  }
+  p.x -= canvas.offsetLeft;
+  p.y -= canvas.offsetTop;
+  return p;
+}
+
+function getTouchPosition(touch) {
+  var p = {};
+  p.x = touch.clientX + document.body.scrollLeft + document.documentElement.scrollLeft - canvas.offsetLeft;
+  p.y = touch.clientY + document.body.scrollTop + document.documentElement.scrollTop - canvas.offsetTop;
+  return p;
+}
+
+function smooth(a1, a2, b1, b2) {
+  var ua_t = (b2.x - b1.x) * (a1.y - b1.y) - (b2.y - b1.y) * (a1.x - b1.x);
+  var ub_t = (a2.x - a1.x) * (a1.y - b1.y) - (a2.y - a1.y) * (a1.x - b1.x);
+  var u_b  = (b2.y - b1.y) * (a2.x - a1.x) - (b2.x - b1.x) * (a2.y - a1.y);
+  
+  if ( u_b == 0 ) {
+    // parallel
+    return false;
+  }
+  
+  var ua = ua_t / u_b;
+  var ub = ub_t / u_b;
+  
+  if (ua > 6 || ua < -6 || ub > 6 || ub < -6) {
+    // intersection point too far from surrounding points; use average
+    return false
+  }
+  
+  // find intersection point
+  var x = a1.x + ua * (a2.x - a1.x);
+  var y = a1.y + ua * (a2.y - a1.y);
+  
+  // average with surrounding points
+  x = (x + x + a2.x + b1.x) / 4;
+  y = (y + y + a2.y + b1.y) / 4;
+  
+  return {x: x, y: y};
+}
+
+function nearby(a, b) {
+  return Math.abs(a.x - b.x) < 5 && Math.abs(a.y - b.y) < 5;
+}
+
+function drawLine(from, to) {
+  context.beginPath();
+  context.moveTo(from.x, from.y);
+  context.lineTo(to.x, to.y);
+  context.stroke();
+}
+
+function drawStroke(original_points) {
+  var points = [original_points[0]];
+  var control;
+  
+  for (i=1; i<original_points.length-1; i++) {
+    if (!nearby(points[points.length-1], original_points[i])) {
+      points.push(original_points[i])
+    }
+  }
+  points.push(original_points[original_points.length-1])
+  
+  context.beginPath();
+  for (i=0; i<points.length-1; i++) {
+    context.moveTo(points[i].x, points[i].y);
+    if (i < 2 || i > points.length-3) {
+      context.lineTo(points[i+1].x, points[i+1].y);
+    } else {
+      control = smooth(points[i-1], points[i], points[i+1], points[i+2]);
+      if (!control) {
+        context.lineTo(points[i+1].x, points[i+1].y);
+      } else {
+        context.quadraticCurveTo(control.x, control.y, points[i+1].x, points[i+1].y);
+      }
+    }
+  }
+  context.stroke();
+}
+
+function mouseDown(e) {
+  stroke.push(getMousePosition(e));
+  isDown = true;
+}
+
+function mouseMove(e) {
+  if (isDown) {
+    stroke.push(getMousePosition(e));
+    var l = stroke.length;
+    drawLine(stroke[l-2], stroke[l-1]);
+  }
+}
+
+function mouseUpOrOut(e) {
+  if (isDown) {
+    stroke.push(getMousePosition(e));
+    context.putImageData(pixels, 0, 0);
+    drawStroke(stroke);
+    pixels = context.getImageData(0, 0, canvas.width, canvas.height);
+    stroke = [];
+    isDown = false;
+  }
+}
+
+function touchStart(e) {
+  for (i=0; i<e.changedTouches.length ;i++) {
+    var touch = e.changedTouches[i];
+    strokes[touch.identifier] = [getTouchPosition(touch)];
+  }
+}
+
+function touchMove(e) {
+  for (i=0; i<e.changedTouches.length ;i++) {
+    var touch = e.changedTouches[i];
+    strokes[touch.identifier].push(getTouchPosition(touch));
+    var l = strokes[touch.identifier].length;
+    drawLine(strokes[touch.identifier][l-2], strokes[touch.identifier][l-1]);
+  }
+}
+
+function touchEnd(e) {
+  for (i=0; i<e.changedTouches.length ;i++) {
+    var touch = e.changedTouches[i];
+  }
+  if (e.touches.length == 0) {
+    context.putImageData(pixels, 0, 0);
+    var identifier;
+    for (identifier in strokes) {
+      if (strokes[identifier].length > 1) {
+        drawStroke(strokes[identifier]);
+        strokes[identifier] = [];
+      }
+    }
+    pixels = context.getImageData(0, 0, canvas.width, canvas.height);
+  }
+}
+
+function clearCanvas() {
+  context.fillRect(0, 0, canvas.width, canvas.height);
+  stroke = [];
+  strokes = {};
+  pixels = context.getImageData(0, 0, canvas.width, canvas.height);
+}
+</script>
+
+</body>
+</html>
