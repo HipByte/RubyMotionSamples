@@ -6,6 +6,6 @@ class AppDelegate
     @window = UIWindow.alloc.initWithFrame(UIScreen.mainScreen.bounds)
     @window.rootViewController = nav
     @window.makeKeyAndVisible
-    return true
+    true
   end
 end

@@ -4,6 +4,6 @@ class AppDelegate
     @window.rootViewController = UINavigationController.alloc.initWithRootViewController(ImageCompositionController.alloc.init)
     @window.rootViewController.wantsFullScreenLayout = true
     @window.makeKeyAndVisible
-    return true
+    true
   end
 end
