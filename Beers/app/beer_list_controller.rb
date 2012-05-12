@@ -28,7 +28,7 @@ class BeerListController < UITableViewController
 
     beer = Beer::All[indexPath.row]
     cell.textLabel.text = beer.title
-    return cell
+    cell
   end
 
   def tableView(tableView, accessoryButtonTappedForRowWithIndexPath:indexPath)

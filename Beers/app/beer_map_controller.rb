@@ -37,7 +37,7 @@ class BeerMapController < UIViewController
       button.addTarget(self, action: :'showDetails:', forControlEvents:UIControlEventTouchUpInside)
       view.rightCalloutAccessoryView = button
     end
-    return view 
+    view
   end
 
   def showDetails(sender)

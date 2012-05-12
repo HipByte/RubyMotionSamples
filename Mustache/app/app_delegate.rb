@@ -4,6 +4,6 @@ class AppDelegate
     @window.rootViewController = MustacheViewController.alloc.init
     @window.rootViewController.wantsFullScreenLayout = true
     @window.makeKeyAndVisible
-    return true
+    true
   end
 end

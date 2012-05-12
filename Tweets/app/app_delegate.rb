@@ -4,6 +4,6 @@ class AppDelegate
     @window.rootViewController = TweetsController.alloc.initWithStyle(UITableViewStylePlain)
     @window.rootViewController.wantsFullScreenLayout = true
     @window.makeKeyAndVisible
-    return true
+    true
   end
 end
