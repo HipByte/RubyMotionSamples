@@ -1,6 +1,7 @@
 class BeerListController < UITableViewController
-  def init
-    if super
+  def init(beer_details_controller)
+    @beer_details_controller = beer_details_controller
+    if super()
       self.tabBarItem = UITabBarItem.alloc.initWithTitle('List', image:UIImage.imageNamed('list.png'), tag:1)
     end
     self
@@ -33,8 +34,7 @@ class BeerListController < UITableViewController
 
   def tableView(tableView, accessoryButtonTappedForRowWithIndexPath:indexPath)
     beer = Beer::All[indexPath.row]
-    controller = UIApplication.sharedApplication.delegate.beer_details_controller
-    navigationController.pushViewController(controller, animated:true)
-    controller.showDetailsForBeer(beer)
+    navigationController.pushViewController(@beer_details_controller, animated:true)
+    @beer_details_controller.showDetailsForBeer(beer)
   end
 end
