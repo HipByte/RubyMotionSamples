@@ -18,16 +18,11 @@ class TweetsController < UITableViewController
 
     @tweets.clear
     Dispatch::Queue.concurrent.async do 
-      error_ptr = Pointer.new(:object)
-      data = NSData.alloc.initWithContentsOfURL(NSURL.URLWithString(url), options:NSDataReadingUncached, error:error_ptr)
-      unless data
-        presentError error_ptr[0]
-        return
-      end
-      json = NSJSONSerialization.JSONObjectWithData(data, options:0, error:error_ptr)
-      unless json
-        presentError error_ptr[0]
-        return
+      json = nil
+      begin
+        json = JSONParser.parse_from_url(url)
+      rescue RuntimeError => e
+        presentError e.message
       end
 
       new_tweets = []
