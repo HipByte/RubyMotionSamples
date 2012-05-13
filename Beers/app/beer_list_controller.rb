@@ -1,7 +1,7 @@
 class BeerListController < UITableViewController
-  def init(beer_details_controller)
+  def initWithDetailsController(beer_details_controller)
     @beer_details_controller = beer_details_controller
-    if super()
+    if init
       self.tabBarItem = UITabBarItem.alloc.initWithTitle('List', image:UIImage.imageNamed('list.png'), tag:1)
     end
     self
