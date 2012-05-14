@@ -1,6 +1,7 @@
 class BeerMapController < UIViewController
-  def init
-    if super
+  def initWithDetailsController(beer_details_controller)
+    @beer_details_controller = beer_details_controller
+    if init
       self.tabBarItem = UITabBarItem.alloc.initWithTitle('Map', image:UIImage.imageNamed('map.png'), tag:1)
     end
     self
@@ -43,8 +44,7 @@ class BeerMapController < UIViewController
   def showDetails(sender)
     if view.selectedAnnotations.size == 1
       beer = view.selectedAnnotations[0]
-      controller = UIApplication.sharedApplication.delegate.beer_details_controller
-      navigationController.pushViewController(controller, animated:true)
+      navigationController.pushViewController(@beer_details_controller, animated:true)
       controller.showDetailsForBeer(beer)
     end
   end
