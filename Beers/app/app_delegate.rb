@@ -7,7 +7,7 @@ class AppDelegate
     @window.rootViewController = UINavigationController.alloc.initWithRootViewController(tabbar)
     @window.rootViewController.wantsFullScreenLayout = true
     @window.makeKeyAndVisible
-    return true
+    true
   end
 
   def beer_details_controller
