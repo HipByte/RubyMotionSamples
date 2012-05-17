@@ -8,6 +8,8 @@ class CustomViewController2 < UIViewController
     self.title = "CustomVC2"
 
     @idlabel ||= retrieveSubviewWithTag(self, TAG_IDLABEL)
+    @idlabel.text = self.to_s
+    
     @description ||= retrieveSubviewWithTag(self, TAG_DESCRIPTION)
     @customtext ||= retrieveSubviewWithTag(self, TAG_CUSTOMTEXT)
   end
