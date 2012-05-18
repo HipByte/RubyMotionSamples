@@ -21,12 +21,12 @@ class TweetsController < UITableViewController
       error_ptr = Pointer.new(:object)
       data = NSData.alloc.initWithContentsOfURL(NSURL.URLWithString(url), options:NSDataReadingUncached, error:error_ptr)
       unless data
-        presentError error_ptr[0]
+        present_error error_ptr[0]
         return
       end
       json = NSJSONSerialization.JSONObjectWithData(data, options:0, error:error_ptr)
       unless json
-        presentError error_ptr[0]
+        present_error error_ptr[0]
         return
       end
 
@@ -50,7 +50,7 @@ class TweetsController < UITableViewController
     view.reloadData
   end
  
-  def presentError(error)
+  def present_error(error)
     # TODO
     $stderr.puts error.description
   end
@@ -60,15 +60,15 @@ class TweetsController < UITableViewController
   end
 
   def tableView(tableView, heightForRowAtIndexPath:indexPath)
-    TweetCell.heightForTweet(@tweets[indexPath.row], tableView.frame.size.width)
+    TweetCell.height_for_tweet(@tweets[indexPath.row], tableView.frame.size.width)
   end
 
   def tableView(tableView, cellForRowAtIndexPath:indexPath)
     tweet = @tweets[indexPath.row]
-    TweetCell.cellForTweet(tweet, inTableView:tableView)
+    TweetCell.cell_for_tweet(tweet, inTableView:tableView)
   end
   
-  def reloadRowForTweet(tweet)
+  def reload_row_for_tweet(tweet)
     row = @tweets.index(tweet)
     if row
       view.reloadRowsAtIndexPaths([NSIndexPath.indexPathForRow(row, inSection:0)], withRowAnimation:false)

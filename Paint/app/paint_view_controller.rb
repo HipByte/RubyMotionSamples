@@ -8,6 +8,6 @@ class PaintViewController < UIViewController
   end
 
   def motionEnded(motion, withEvent:event)
-    self.view.eraseContent if motion == UIEventSubtypeMotionShake
+    self.view.erase_content if motion == UIEventSubtypeMotionShake
   end
 end

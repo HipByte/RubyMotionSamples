@@ -34,18 +34,18 @@ class BeerMapController < UIViewController
       view.canShowCallout = true
       view.animatesDrop = true
       button = UIButton.buttonWithType(UIButtonTypeDetailDisclosure)
-      button.addTarget(self, action: :'showDetails:', forControlEvents:UIControlEventTouchUpInside)
+      button.addTarget(self, action: :'show_details:', forControlEvents:UIControlEventTouchUpInside)
       view.rightCalloutAccessoryView = button
     end
     view
   end
 
-  def showDetails(sender)
+  def show_details(sender)
     if view.selectedAnnotations.size == 1
       beer = view.selectedAnnotations[0]
       controller = UIApplication.sharedApplication.delegate.beer_details_controller
       navigationController.pushViewController(controller, animated:true)
-      controller.showDetailsForBeer(beer)
+      controller.show_details_for_beer(beer)
     end
   end
 end

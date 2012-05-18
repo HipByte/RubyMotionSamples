@@ -10,10 +10,10 @@ class MustacheViewController < UIViewController
     view.contentMode = UIViewContentModeScaleAspectFit
     view.userInteractionEnabled = true
 
-    previousGesture = UISwipeGestureRecognizer.alloc.initWithTarget(self, action:'swipePreviousGesture:')
+    previousGesture = UISwipeGestureRecognizer.alloc.initWithTarget(self, action:'swipe_previous_gesture:')
     previousGesture.direction = UISwipeGestureRecognizerDirectionLeft
     view.addGestureRecognizer(previousGesture)
-    nextGesture = UISwipeGestureRecognizer.alloc.initWithTarget(self, action:'swipeNextGesture:')
+    nextGesture = UISwipeGestureRecognizer.alloc.initWithTarget(self, action:'swipe_next_gesture:')
     nextGesture.direction = UISwipeGestureRecognizerDirectionRight
     view.addGestureRecognizer(nextGesture)
   end
@@ -75,7 +75,7 @@ class MustacheViewController < UIViewController
     true
   end
 
-  def swipePreviousGesture(gesture)
+  def swipe_previous_gesture(gesture)
     idx = @images.index(view.image)
     view.image =
       if idx == 0
@@ -86,7 +86,7 @@ class MustacheViewController < UIViewController
     mustachify
   end
 
-  def swipeNextGesture(gesture)
+  def swipe_next_gesture(gesture)
     idx = @images.index(view.image)
     view.image =
       if idx == @images.size - 1

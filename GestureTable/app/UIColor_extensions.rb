@@ -1,5 +1,5 @@
 class UIColor
-  def colorWithBrightness(brightnessComponent)
+  def color_with_brightness(brightnessComponent)
     hue = Pointer.new(:float)
     saturation = Pointer.new(:float)
     brightness = Pointer.new(:float)

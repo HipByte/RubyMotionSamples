@@ -2,9 +2,9 @@ class TweetCell < UITableViewCell
   CellID = 'CellIdentifier'
   MessageFontSize = 14
 
-  def self.cellForTweet(tweet, inTableView:tableView)
+  def self.cell_for_tweet(tweet, inTableView:tableView)
     cell = tableView.dequeueReusableCellWithIdentifier(TweetCell::CellID) || TweetCell.alloc.initWithStyle(UITableViewCellStyleDefault, reuseIdentifier:CellID)
-    cell.fillWithTweet(tweet, inTableView:tableView)
+    cell.fill_with_tweet(tweet, inTableView:tableView)
     cell
   end
  
@@ -16,7 +16,7 @@ class TweetCell < UITableViewCell
     self
   end
  
-  def fillWithTweet(tweet, inTableView:tableView)
+  def fill_with_tweet(tweet, inTableView:tableView)
     self.textLabel.text = tweet.message
     
     unless tweet.profile_image
@@ -27,7 +27,7 @@ class TweetCell < UITableViewCell
           tweet.profile_image = UIImage.alloc.initWithData(profile_image_data)
           Dispatch::Queue.main.sync do
             self.imageView.image = tweet.profile_image
-            tableView.delegate.reloadRowForTweet(tweet)
+            tableView.delegate.reload_row_for_tweet(tweet)
           end
         end
       end
@@ -36,7 +36,7 @@ class TweetCell < UITableViewCell
     end
   end
 
-  def self.heightForTweet(tweet, width)
+  def self.height_for_tweet(tweet, width)
     constrain = CGSize.new(width - 57, 1000)
     size = tweet.message.sizeWithFont(UIFont.systemFontOfSize(MessageFontSize), constrainedToSize:constrain)
     [57, size.height + 8].max

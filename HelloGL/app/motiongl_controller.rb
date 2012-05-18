@@ -7,7 +7,7 @@ class MotionGLController < GLKViewController
     #self.view.delegate = self
   end
   
-  def setupGL
+  def setup_GL
     EAGLContext.setCurrentContext(@context)
     
     @effect = GLKBaseEffect.alloc.init
@@ -74,7 +74,7 @@ class MotionGLController < GLKViewController
 
     self.view.context = @context
     @rotation = 0
-    setupGL
+    setup_GL
   end
   
   def viewDidUnload

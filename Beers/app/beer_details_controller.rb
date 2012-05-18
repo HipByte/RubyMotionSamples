@@ -7,7 +7,7 @@ class BeerDetailsController < UIViewController
     navigationController.setNavigationBarHidden(false, animated:true)
   end
 
-  def showDetailsForBeer(beer)
+  def show_details_for_beer(beer)
     navigationItem.title = beer.title
     request = NSURLRequest.requestWithURL(beer.url)
     view.loadRequest(request)

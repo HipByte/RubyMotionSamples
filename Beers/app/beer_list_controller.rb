@@ -35,6 +35,6 @@ class BeerListController < UITableViewController
     beer = Beer::All[indexPath.row]
     controller = UIApplication.sharedApplication.delegate.beer_details_controller
     navigationController.pushViewController(controller, animated:true)
-    controller.showDetailsForBeer(beer)
+    controller.show_details_for_beer(beer)
   end
 end
