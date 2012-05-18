@@ -12,14 +12,14 @@ class CustomViewController2 < UIViewController
     puts "#{self.to_s}: CustomViewController2::viewDidLoad"
     self.title = "CustomVC2"
     
-    @idlabel = retrieveSubviewWithTag(self, TAG_IDLABEL)
+    @idlabel = retrieve_subview_with_tag(self, TAG_IDLABEL)
     @idlabel.text = self.to_s
 
-    @description = retrieveSubviewWithTag(self, TAG_DESCRIPTION)
-    @customtext = retrieveSubviewWithTag(self, TAG_CUSTOMTEXT)
+    @description = retrieve_subview_with_tag(self, TAG_DESCRIPTION)
+    @customtext = retrieve_subview_with_tag(self, TAG_CUSTOMTEXT)
   end
 
-  def setParentId(id)
+  def set_parent_id(id)
     @description.text = "Custom text from #{id}:"
   end
 

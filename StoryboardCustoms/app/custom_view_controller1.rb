@@ -6,10 +6,10 @@ class CustomViewController1 < UIViewController
     puts "#{self.to_s}: CustomViewController1::viewDidLoad"
     self.title = "CustomVC1"
 
-    @idlabel = retrieveSubviewWithTag(self, TAG_IDLABEL)
+    @idlabel = retrieve_subview_with_tag(self, TAG_IDLABEL)
     @idlabel.text = self.to_s
 
-    @textbox = retrieveSubviewWithTag(self, TAG_TEXTBOX)
+    @textbox = retrieve_subview_with_tag(self, TAG_TEXTBOX)
     @textbox.delegate = self
   end
 
@@ -18,7 +18,7 @@ class CustomViewController1 < UIViewController
 
     if segue.identifier == "Subview"
       customVC2 = segue.destinationViewController
-      customVC2.setParentId(self.to_s)
+      customVC2.set_parent_id(self.to_s)
       customVC2.customtext.text = @textbox.text
     end
   end
