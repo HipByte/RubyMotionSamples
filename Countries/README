@@ -2,7 +2,7 @@ Countries.app
 
 This sample demonstrates the following concepts: HTTP GET Request, JSON.
 
-Tap the window and a country is randomly displayed.
+Tap the window and a country name is randomly displayed.
 
 The code gets very simple by using BubbleWrap(https://github.com/mattetti/BubbleWrap), wrappers and helpers for RubyMotion.
 
