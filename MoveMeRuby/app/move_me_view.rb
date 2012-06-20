@@ -84,7 +84,7 @@ class MoveMeView < UIView
   	welcomeLayer = placardView.layer
 
   	# Create a keyframe animation to follow a path back to the center
-  	bounceAnimation = CAKeyframeAnimation.animationWithKeyPath('position')
+  	bounceAnimation = CAKeyframeAnimation.animationWithKeyPath(:position)
   	bounceAnimation.removedOnCompletion = false
 
   	animationDuration = 1.5
@@ -121,7 +121,7 @@ class MoveMeView < UIView
   	bounceAnimation.duration = animationDuration
   	
   	# Create a basic animation to restore the size of the placard
-  	transformAnimation = CABasicAnimation.animationWithKeyPath('transform')
+  	transformAnimation = CABasicAnimation.animationWithKeyPath(:transform)
   	transformAnimation.removedOnCompletion = true
   	transformAnimation.duration = animationDuration
   	transformAnimation.toValue = NSValue.valueWithCATransform3D(CATransform3DIdentity)
@@ -136,7 +136,7 @@ class MoveMeView < UIView
   	theGroup.animations = [bounceAnimation, transformAnimation]
 
   	# Add the animation group to the layer
-  	welcomeLayer.addAnimation(theGroup, forKey: 'animatePlacardViewToCenter')
+  	welcomeLayer.addAnimation(theGroup, forKey: :animatePlacardViewToCenter)
 
   	# Set the placard view's center and transformation to the original values in preparation for the
   	# end of the animation
