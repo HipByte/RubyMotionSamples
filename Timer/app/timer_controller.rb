@@ -1,4 +1,6 @@
 class TimerController < UIViewController
+  attr_reader :timer
+
   def viewDidLoad
     margin = 20
 
