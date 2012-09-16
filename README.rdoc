@@ -9,6 +9,22 @@ This repository contains a collection of RubyMotion examples.
 == Projects
 
 Each one of the sub-directories in this repository is a genuine RubyMotion project that demonstrates one or more particular features of iOS.
+The projects currently available are:
+
+- Beers: Tabs Bar, Table View, Map View, Web View
+- Fonts: Table View, Accessory View, Fonts
+- Table: Table View, Gestures
+- Hello: Custom View Drawing, Touches
+- HelloGL: GLKit (OpenGL)
+- Location: Table View, Core Location, Core Data
+- Mustache: Images, Face Recognition, Gestures
+- Paint: Custom View Drawing, Bezier Paths, Gestures, Audio Player
+- PaintHTML: WebView, HTML5 backend
+- StoryboardCustoms: Storyboard based view design, Transitions
+- TicTacToe: Game Engine
+- Timer: Timer, Label, Button
+- Trollify: Images, Image Picker, Camera Roll, Action Sheet, Gestures
+- Tweets: Table View, Custom Table View Cells, Grand Central Dispatch, JSON
 
 Check their +README+ files to know more. Type +rake+ from there to build and try the sample in the simulator. You can find the full source code from their +app+ directory.
 
