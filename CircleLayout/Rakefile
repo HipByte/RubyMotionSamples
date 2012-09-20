@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-$:.unshift("/Users/lrz/src/RubyMotionPrivate/lib")#Library/RubyMotion/lib")
+$:.unshift("/Library/RubyMotion/lib")
 require 'motion/project'
 
 Motion::Project::App.setup do |app|
