@@ -14,7 +14,7 @@ class DetailController < UIViewController
     navigationItem.title = "Sample Text"
   end
 
-  def viewDidAppear(animated)
+  def viewWillAppear(animated)
     font = UIFont.fontWithName(@font_name, size:16)
     frame_size = sample_text.sizeWithFont(font, constrainedToSize:[self.view.bounds.size.width - 20, 1000], lineBreakMode:UILineBreakModeWordWrap)
     rect = [[10, 10], [frame_size.width, frame_size.height]]
