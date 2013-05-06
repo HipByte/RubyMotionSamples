@@ -1,0 +1,16 @@
+# -*- coding: utf-8 -*-
+$:.unshift("/Library/RubyMotion/lib")
+require 'motion/project/template/osx'
+
+Motion::Project::App.setup do |app|
+  # Use `rake config' to see complete project settings.
+  app.name = 'PagePacker'
+  app.icon = 'PPApp'
+  app.frameworks << 'Quartz'
+  app.info_plist['NSMainNibFile'] = 'MainMenu'
+  app.info_plist['CFBundleDocumentTypes'] = [{
+    'CFBundleTypeIconFile' => 'PPApp.icns',
+    'CFBundleTypeName' => 'DocumentType',
+    'CFBundleTypeRole' => 'Editor',
+    'NSDocumentClass' => 'MyDocument'}]
+end
