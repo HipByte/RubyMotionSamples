@@ -3,11 +3,11 @@ class Photo
   
   def initialize(url, link)
     @urlString = url
-    @url = NSURL.alloc.initWithString url
-    @link = NSURL.alloc.initWithString link
+    @url = NSURL.alloc.initWithString(url)
+    @link = NSURL.alloc.initWithString(link)
   end
   
-  # IKImageBrowserItem protocol conformance
+  # IKImageBrowserItem protocol.
   
   def imageUID
     @urlString
@@ -18,6 +18,6 @@ class Photo
   end
   
   def imageRepresentation    
-    @image ||= NSImage.alloc.initByReferencingURL @url
+    @image ||= NSImage.alloc.initByReferencingURL(@url)
   end
 end

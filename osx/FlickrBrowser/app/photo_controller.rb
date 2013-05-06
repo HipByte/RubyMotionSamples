@@ -27,6 +27,8 @@ class PhotoController
     @browserView.reloadData
   end
 
+  # IKImageBrowserViewDatasource/Delegate protocol.
+
   def numberOfItemsInImageBrowser(browser)
     @results ? @results.size : 0
   end
