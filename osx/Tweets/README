@@ -1,3 +1,7 @@
-RssReader.app
+Tweets.app
 
-This sample demonstrates the following concepts: NSTableView, NSImageCell and JSON parsing.
+This sample demonstrates the following concepts: NSTableView, NSImageCell and
+JSON parsing.
+
+The data_parser.rb, tweet.rb and json_parser.rb files are exactly the same
+as in the iOS/Tweets sample.
