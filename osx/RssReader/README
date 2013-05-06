@@ -1,3 +1,4 @@
 RssReader.app
 
-This sample demonstrates the following concepts: NSTableView, XML parsing.
+This sample demonstrates the following concepts: NSTableView, XML parsing,
+Grand Central Dispatch.
