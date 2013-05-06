@@ -13,7 +13,7 @@ class AppDelegate
     @demo_view.needsDisplay = true
   end
 
-  def print(sender)
+  def printDocument(sender)
     info = NSPrintInfo.sharedPrintInfo
     printOp = NSPrintOperation.printOperationWithView(@demo_view, printInfo:info)
     printOp.showPanels = true
@@ -32,31 +32,33 @@ class AppDelegate
     label.bordered = false
     label.editable = false
     label.drawsBackground = false
-    label.setAutoresizingMask(NSViewMinYMargin)
+    label.autoresizingMask = NSViewMinYMargin
     @mainWindow.contentView.addSubview(label)
 
     @popup = NSPopUpButton.alloc.initWithFrame([[158, 431], [178, 24]])
     ['Rectangles', 'Circles', 'Bezier Paths', 'Circle Clipping'].each do |title|
       @popup.addItemWithTitle(title)
     end
-    @popup.setAutoresizingMask(NSViewMinYMargin)
+    @popup.autoresizingMask = NSViewMinYMargin
+    @popup.target = self
+    @popup.action = :"runAgain:"
     @mainWindow.contentView.addSubview(@popup)
 
     box = NSBox.alloc.initWithFrame([[20, 20], [494, 397]])
     box.title = ""
-    box.setAutoresizingMask(NSViewWidthSizable|NSViewHeightSizable)
+    box.autoresizingMask = NSViewWidthSizable|NSViewHeightSizable
     @mainWindow.contentView.addSubview(box)
 
     @demo_view = DemoView.alloc.initWithFrame([[14, 54], [462, 325]])
-    @demo_view.setAutoresizingMask(NSViewWidthSizable|NSViewHeightSizable)
+    @demo_view.autoresizingMask = NSViewWidthSizable|NSViewHeightSizable
     box.contentView.addSubview(@demo_view)
 
     button = NSButton.alloc.initWithFrame([[8, 6], [107, 32]])
     button.title = "Run Again"
-    button.action = "runAgain:"
-    button.bezelStyle = NSRoundedBezelStyle
     button.target = self
-    button.setAutoresizingMask(NSViewMaxYMargin)
+    button.action = :"runAgain:"
+    button.bezelStyle = NSRoundedBezelStyle
+    button.autoresizingMask = NSViewMaxYMargin
     box.contentView.addSubview(button)
 
     @mainWindow.orderFrontRegardless

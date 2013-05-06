@@ -1,5 +1,4 @@
 class DemoView < NSView
-
   attr_accessor :demoNumber
 
   def initWithFrame(frameRect)
@@ -39,13 +38,11 @@ class DemoView < NSView
   end
 
   def setRandomFillColor(context)
-    CGContextSetRGBFillColor(context, randf(0, 1), randf(0, 1),
-        randf(0, 1), randf(0, 1))
+    CGContextSetRGBFillColor(context, randf(0, 1), randf(0, 1), randf(0, 1), randf(0, 1))
   end
 
   def setRandomStrokeColor(context)
-    CGContextSetRGBStrokeColor(context, randf(0, 1), randf(0, 1),
-        randf(0, 1), randf(0, 1))
+    CGContextSetRGBStrokeColor(context, randf(0, 1), randf(0, 1), randf(0, 1), randf(0, 1))
   end
 
   def randomPointInRect(rect)
@@ -80,11 +77,10 @@ class DemoView < NSView
       r = randomRectInRect(rect)
       w, h = r.size.width, r.size.height
       CGContextBeginPath(context)
-      CGContextAddArc(context, r.origin.x + (w / 2.0), r.origin.y + (h / 2.0),
-          (w < h) ? w : h, 0, 2 * Math::PI, false)
+      CGContextAddArc(context, r.origin.x + (w / 2.0), r.origin.y + (h / 2.0), (w < h) ? w : h, 0, 2 * Math::PI, false)
       CGContextClosePath(context)
       if (k % 2) == 0
-  	    setRandomFillColor(context)
+  	setRandomFillColor(context)
         CGContextFillPath(context)
       else
         setRandomStrokeColor(context)
@@ -106,8 +102,7 @@ class DemoView < NSView
           CGContextAddLineToPoint(context, p.x, p.y)
         else
           c1, c2 = randomPointInRect(rect), randomPointInRect(rect)
-          CGContextAddCurveToPoint(context, c1.x, c1.y,
-              c2.x, c2.y, p.x, p.y)
+          CGContextAddCurveToPoint(context, c1.x, c1.y, c2.x, c2.y, p.x, p.y)
         end
       end
       if (k % 2) == 0
@@ -127,8 +122,7 @@ class DemoView < NSView
 
     # Draw a random path through a circular clip.
     CGContextBeginPath(context)
-    CGContextAddArc(context, rect.origin.x + (w / 2.0), rect.origin.y + (h / 2.0),
-		    ((w < h) ? w : h) / 2.0, 0, 2 * Math::PI, false)
+    CGContextAddArc(context, rect.origin.x + (w / 2.0), rect.origin.y + (h / 2.0), ((w < h) ? w : h) / 2.0, 0, 2 * Math::PI, false)
     CGContextClosePath(context)
     CGContextClip(context)
 
@@ -137,12 +131,10 @@ class DemoView < NSView
 
     # Draw a clip path on top as a black stroked circle.
     CGContextBeginPath(context)
-    CGContextAddArc(context, rect.origin.x + (w / 2.0), rect.origin.y + (h / 2.0),
-		    ((w < h) ? w : h) / 2.0, 0, 2 * Math::PI, false)
+    CGContextAddArc(context, rect.origin.x + (w / 2.0), rect.origin.y + (h / 2.0), ((w < h) ? w : h) / 2.0, 0, 2 * Math::PI, false)
     CGContextClosePath(context)
     CGContextSetLineWidth(context, 1)
     CGContextSetRGBStrokeColor(context, 0, 0, 0, 1)
     CGContextStrokePath(context)
   end
-
 end
