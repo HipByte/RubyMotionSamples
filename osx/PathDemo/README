@@ -1,0 +1,4 @@
+PathDemo.app
+
+This sample demonstrates the following concepts: Path operations (circles,
+rectangles, Bezier paths), NSView, custom drawing.
