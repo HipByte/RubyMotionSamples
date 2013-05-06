@@ -13,49 +13,50 @@ class AppDelegate
     @mainWindow.orderFrontRegardless
 
     @text_search = NSTextField.alloc.initWithFrame(NSMakeRect(20, 318, 341, 22))
-    @text_search.setStringValue("xcode crash")
-    @text_search.setAutoresizingMask(NSViewMinXMargin|NSViewMinYMargin|NSViewWidthSizable)
+    @text_search.stringValue = "xcode crash"
+    @text_search.autoresizingMask = NSViewMinXMargin|NSViewMinYMargin|NSViewWidthSizable
     @mainWindow.contentView.addSubview(@text_search)
 
     button = NSButton.alloc.initWithFrame(NSMakeRect(384, 310, 82, 32))
-    button.setTitle("Search")
-    button.setAction("search:")
-    button.setTarget(self)
-    button.setBezelStyle(NSRoundedBezelStyle)
-    button.setAutoresizingMask(NSViewMinXMargin|NSViewMinYMargin)
+    button.title = "Search"
+    button.action = :"search:"
+    button.target = self
+    button.bezelStyle = NSRoundedBezelStyle
+    button.autoresizingMask = NSViewMinXMargin|NSViewMinYMargin
     @mainWindow.contentView.addSubview(button)
 
     scroll_view = NSScrollView.alloc.initWithFrame(NSMakeRect(0, 0, 480, 300))
-    scroll_view.setAutoresizingMask(NSViewMinXMargin|NSViewMinYMargin|NSViewWidthSizable|NSViewHeightSizable)
-    scroll_view.setHasVerticalScroller(true)
+    scroll_view.autoresizingMask = NSViewMinXMargin|NSViewMinYMargin|NSViewWidthSizable|NSViewHeightSizable
+    scroll_view.hasVerticalScroller = true
     @mainWindow.contentView.addSubview(scroll_view)
 
     @table_view = NSTableView.alloc.init
-    column_avator = NSTableColumn.alloc.initWithIdentifier("avator")
+    column_avator = NSTableColumn.alloc.initWithIdentifier("avatar")
     column_avator.editable = false
-    column_avator.headerCell.setTitle("Avator")
-    column_avator.setWidth(40)
-    column_avator.setDataCell(NSImageCell.alloc.init)
+    column_avator.headerCell.title = "Avatar"
+    column_avator.width = 40
+    column_avator.dataCell = NSImageCell.alloc.init
     @table_view.addTableColumn(column_avator)
 
     column_name = NSTableColumn.alloc.initWithIdentifier("name")
     column_name.editable = false
-    column_name.headerCell.setTitle("Name")
-    column_name.setWidth(150)
+    column_name.headerCell.title ="Name"
+    column_name.width = 150
     @table_view.addTableColumn(column_name)
 
     column_tweet = NSTableColumn.alloc.initWithIdentifier("tweet")
     column_tweet.editable = false
     column_tweet.headerCell.setTitle("Tweet")
-    column_tweet.setWidth(290)
+    column_tweet.width = 290
     @table_view.addTableColumn(column_tweet)
 
     @table_view.delegate = self
     @table_view.dataSource = self
-    @table_view.setAutoresizingMask(NSViewMinXMargin|NSViewMaxXMargin|NSViewMinYMargin|NSViewMaxYMargin)
+    @table_view.autoresizingMask = NSViewMinXMargin|NSViewMaxXMargin|NSViewMinYMargin|NSViewMaxYMargin
 
-    scroll_view.setDocumentView(@table_view)
+    scroll_view.documentView = @table_view
 
+    search(self)
   end
 
   def search(sender)
@@ -90,26 +91,23 @@ class AppDelegate
 
         Dispatch::Queue.main.sync { @table_view.reloadData }
       end
-
     end
   end
 
   def numberOfRowsInTableView(aTableView)
-    return 0 if @search_result.nil?
-    return @search_result.size
+    @search_result ? @search_result.size : 0
   end
 
   def tableView(aTableView,
                 objectValueForTableColumn: aTableColumn,
                 row: rowIndex)
     case aTableColumn.identifier
-    when "avator"
-      return @search_result[rowIndex].profile_image
-    when "name"
-      return @search_result[rowIndex].author
-    when "tweet"
-      return @search_result[rowIndex].message
+      when "avatar"
+        @search_result[rowIndex].profile_image
+      when "name"
+        @search_result[rowIndex].author
+      when "tweet"
+        @search_result[rowIndex].message
     end
   end
-
 end
