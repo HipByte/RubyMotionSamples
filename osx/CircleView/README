@@ -1,4 +1,4 @@
 CircleView.app
 
-This sample demonstrates the following concepts: NSView, event handling,
+This sample demonstrates the following concepts: custom NSView, event handling,
 NSAffineTransform, text layout and rendering.

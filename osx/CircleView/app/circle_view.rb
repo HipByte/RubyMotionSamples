@@ -1,6 +1,4 @@
-
 class CircleView < NSView
-
   # Many of the methods here are similar to those in the simpler DotView example.
   # See that example for detailed explanations; here we will discuss those
   # features that are unique to CircleView.
@@ -8,7 +6,6 @@ class CircleView < NSView
   # CircleView draws text around a circle, using Cocoa's text system for
   # glyph generation and layout, then calculating the positions of glyphs
   # based on that layout, and using NSLayoutManager for drawing.
-
   def initWithFrame(frame)
     super
 
@@ -41,13 +38,12 @@ class CircleView < NSView
 
     # Note that usedRectForTextContainer: does not force layout, so it must
     # be called after glyphRangeForTextContainer:, which does force layout.
-
-    glyphRange = @layoutManager.glyphRangeForTextContainer @textContainer
-    usedRect = @layoutManager.usedRectForTextContainer @textContainer
+    glyphRange = @layoutManager.glyphRangeForTextContainer(@textContainer)
+    usedRect = @layoutManager.usedRectForTextContainer(@textContainer)
     context = NSGraphicsContext.currentContext
 
     glyphRange.location.upto(glyphRange.location + glyphRange.length - 1) do |i|
-      lineFragmentRect = @layoutManager.lineFragmentRectForGlyphAtIndex i, effectiveRange:nil
+      lineFragmentRect = @layoutManager.lineFragmentRectForGlyphAtIndex(i, effectiveRange:nil)
       layoutLocation = @layoutManager.locationForGlyphAtIndex(i)
       transform = NSAffineTransform.transform
 
@@ -64,7 +60,7 @@ class CircleView < NSView
 
       # We use a different affine transform for each glyph, to position and rotate it
       # based on its calculated position around the circle.
-      transform.translateXBy viewLocation.x, yBy:viewLocation.y
+      transform.translateXBy(viewLocation.x, yBy:viewLocation.y)
       transform.rotateByRadians(-angle)
 
       # We save and restore the graphics state so that the transform applies only to this glyph.
@@ -72,7 +68,7 @@ class CircleView < NSView
       transform.concat
       # drawGlyphsForGlyphRange: draws the glyph at its laid-out location in container coordinates.
       # Since we are using the transform to place the glyph, we subtract the laid-out location here.
-      @layoutManager.drawGlyphsForGlyphRange NSMakeRange(i, 1), atPoint:NSMakePoint(-layoutLocation.x, -layoutLocation.y)
+      @layoutManager.drawGlyphsForGlyphRange(NSMakeRange(i, 1), atPoint:NSMakePoint(-layoutLocation.x, -layoutLocation.y))
       context.restoreGraphicsState
     end
   end
@@ -185,12 +181,11 @@ class CircleView < NSView
     end
   end
 
-  def performAnimation timer
+  def performAnimation(timer)
     # We determine how much time has elapsed since the last animation,
     # and we advance the angle accordingly.
     thisTime = NSDate.timeIntervalSinceReferenceDate
-    setStartingAngle @startingAngle + @angularVelocity * (thisTime - @lastTime)
+    setStartingAngle(@startingAngle + @angularVelocity * (thisTime - @lastTime))
     @lastTime = thisTime
   end
-
 end

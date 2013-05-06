@@ -16,43 +16,43 @@ class AppDelegate
     @mainWindow.contentView.addSubview(@circle_view)
 
     slider1 = NSSlider.alloc.initWithFrame(NSMakeRect(22, 79, 275, 21))
-    slider1.setAction("takeRadiusFrom:")
-    slider1.setTarget(@circle_view)
-    slider1.setMinValue(1)
-    slider1.setMaxValue(400)
-    slider1.setIntValue(115)
-    slider1.setAutoresizingMask(NSViewWidthSizable)
+    slider1.action = :"takeRadiusFrom:"
+    slider1.target = @circle_view
+    slider1.minValue = 1 
+    slider1.maxValue = 400 
+    slider1.intValue = 115 
+    slider1.autoresizingMask = NSViewWidthSizable
     @mainWindow.contentView.addSubview(slider1)
 
     slider2 = NSSlider.alloc.initWithFrame(NSMakeRect(22, 51, 275, 21))
-    slider2.setAction("takeStartingAngleFrom:")
-    slider2.setTarget(@circle_view)
-    slider2.setMinValue(0)
-    slider2.setMaxValue(6.28)
-    slider2.setFloatValue(1.6)
-    slider2.setAutoresizingMask(NSViewWidthSizable)
+    slider2.action = :"takeStartingAngleFrom:" 
+    slider2.target = @circle_view 
+    slider2.minValue = 0 
+    slider2.maxValue = 6.28 
+    slider2.floatValue = 1.6 
+    slider2.autoresizingMask = NSViewWidthSizable 
     @mainWindow.contentView.addSubview(slider2)
 
     color_well = NSColorWell.alloc.initWithFrame(NSMakeRect(328, 75, 53, 30))
-    color_well.setColor(NSColor.blackColor)
-    color_well.setAction("takeColorFrom:")
-    color_well.setTarget(@circle_view)
-    color_well.setAutoresizingMask(NSViewMinXMargin)
+    color_well.color = NSColor.blackColor 
+    color_well.action = :"takeColorFrom:" 
+    color_well.target = @circle_view 
+    color_well.autoresizingMask = NSViewMinXMargin 
     @mainWindow.contentView.addSubview(color_well)
 
     button = NSButton.alloc.initWithFrame(NSMakeRect(323, 43, 63, 28))
-    button.setTitle("Spin")
-    button.setAction("toggleAnimation:")
-    button.setTarget(@circle_view)
-    button.setBezelStyle(NSRoundedBezelStyle)
-    button.setAutoresizingMask(NSViewMinXMargin)
+    button.title = "Spin" 
+    button.action = "toggleAnimation:" 
+    button.target = @circle_view 
+    button.bezelStyle = NSRoundedBezelStyle 
+    button.autoresizingMask = NSViewMinXMargin 
     @mainWindow.contentView.addSubview(button)
 
     text = NSTextField.alloc.initWithFrame(NSMakeRect(24, 15, 358, 22))
-    text.setStringValue("Here's to the crazy ones, the misfits, the rebels, the troublemakers, the round pegs in the square holes, the ones who see things differently.")
-    text.setAction("takeStringFrom:")
-    text.setTarget(@circle_view)
-    text.setAutoresizingMask(NSViewWidthSizable)
+    text.stringValue = "Here's to the crazy ones, the misfits, the rebels, the troublemakers, the round pegs in the square holes, the ones who see things differently."
+    text.action = :"takeStringFrom:"
+    text.target = @circle_view
+    text.autoresizingMask = NSViewWidthSizable
     @mainWindow.contentView.addSubview(text)
 
     @mainWindow.orderFrontRegardless
