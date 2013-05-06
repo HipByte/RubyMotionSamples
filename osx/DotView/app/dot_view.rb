@@ -1,5 +1,4 @@
 class DotView < NSView
-  
   # initWithFrame: is NSView's designated initializer (meaning it should be
   # overridden in the subclassers if needed, and it should call super, that is
   # NSView's implementation).  In DotView we do just that, and also set the
@@ -10,8 +9,7 @@ class DotView < NSView
   # sure the two places are initialized from the same place. Slightly more
   # sophisticated apps which load nibs for each document or window would initialize
   # UI elements at the time they're loaded from values in the program.
-
-  def initWithFrame frame
+  def initWithFrame(frame)
     super(frame)
     @center = NSMakePoint(50.0, 50.0)
     @radius = 10.0
@@ -25,8 +23,7 @@ class DotView < NSView
   # it will also be called during printing if your app is set up to print.
   # In DotView we first clear the view to white, then draw the dot at its
   # current location and size.
-
-  def drawRect rect
+  def drawRect(rect)
     NSColor.whiteColor.set
     NSRectFill(bounds) # Equiv to NSBezierPath.bezierPathWithRect(bounds).fill
   
@@ -44,7 +41,6 @@ class DotView < NSView
   # views behind it should override isOpaque to return true. This is a performance
   # optimization hint for the display subsystem. This applies to DotView, whose
   # drawRect: does fill the whole rect its given with a solid, opaque color.
-
   def isOpaque
     true
   end
@@ -58,10 +54,9 @@ class DotView < NSView
   # Note that once we get the new center, we call setNeedsDisplay:YES to 
   # mark that the view needs to be redisplayed (which is done automatically
   # by the AppKit).
-
-  def mouseUp event
-    @center = convertPoint event.locationInWindow, fromView:nil
-    setNeedsDisplay true
+  def mouseUp(event)
+    @center = convertPoint(event.locationInWindow, fromView:nil)
+    setNeedsDisplay(true)
   end
 
   # setRadius: is an action method which lets you change the radius of the dot.
@@ -69,10 +64,9 @@ class DotView < NSView
   # number; so we ask for it's value, and mark the view as needing to be 
   # redisplayed. A possible optimization is to check to see if the old and
   # new value is the same, and not do anything if so.
-
   def setRadius(sender)
     @radius = sender.doubleValue
-    setNeedsDisplay true
+    setNeedsDisplay(true)
   end
 
   # setColor: is an action method which lets you change the color of the dot.
@@ -80,10 +74,8 @@ class DotView < NSView
   # can do this). We get the value and mark the view as needing to be redisplayed. 
   # A possible optimization is to check to see if the old and new value is the same, 
   # and not do anything if so.
- 
   def setColor(sender)
     @color = sender.color
-    setNeedsDisplay true
+    setNeedsDisplay(true)
   end
-  
 end

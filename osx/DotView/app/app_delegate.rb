@@ -11,24 +11,27 @@ class AppDelegate
       defer: false)
     @mainWindow.title = NSBundle.mainBundle.infoDictionary['CFBundleName']
 
+    # Build the drawing view.
     dot_view = DotView.alloc.initWithFrame(NSMakeRect(24, 61, 357, 264))
-    dot_view.setAutoresizingMask(NSViewMinXMargin|NSViewMaxXMargin|NSViewMinYMargin|NSViewMaxYMargin|NSViewWidthSizable|NSViewHeightSizable)
+    dot_view.autoresizingMask = NSViewWidthSizable|NSViewHeightSizable
     @mainWindow.contentView.addSubview(dot_view)
 
+    # Build the slider.
     slider = NSSlider.alloc.initWithFrame(NSMakeRect(21, 23, 275, 21))
-    slider.setAction("setRadius:")
-    slider.setTarget(dot_view)
-    slider.setMinValue(1)
-    slider.setMaxValue(400)
-    slider.setIntValue(10)
-    slider.setAutoresizingMask(NSViewWidthSizable)
+    slider.action= :"setRadius:"
+    slider.target = dot_view
+    slider.minValue = 1
+    slider.maxValue = 400
+    slider.intValue = 10
+    slider.autoresizingMask = NSViewMaxYMargin|NSViewWidthSizable
     @mainWindow.contentView.addSubview(slider)
 
+    # Build the color well button.
     color_well = NSColorWell.alloc.initWithFrame(NSMakeRect(328, 20, 53, 30))
-    color_well.setColor(NSColor.redColor)
-    color_well.setAction("setColor:")
-    color_well.setTarget(dot_view)
-    color_well.setAutoresizingMask(NSViewMaxXMargin|NSViewMaxYMargin)
+    color_well.color = NSColor.redColor
+    color_well.action = :"setColor:"
+    color_well.target = dot_view
+    color_well.autoresizingMask = NSViewMinXMargin|NSViewMaxYMargin
     @mainWindow.contentView.addSubview(color_well)
 
     @mainWindow.orderFrontRegardless
