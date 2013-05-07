@@ -23,7 +23,7 @@ class Photo
     @image ||= begin
       Dispatch::Queue.concurrent.async do
         @image = NSImage.alloc.initWithContentsOfURL(@url)
-        Dispatch::Queue.main.sync { NSNotificationCenter.defaultCenter.postNotificationName(PhotoDownloadFinishedNotification, object:self) }
+        Dispatch::Queue.main.async { NSNotificationCenter.defaultCenter.postNotificationName(PhotoDownloadFinishedNotification, object:self) }
       end
     end
   end
