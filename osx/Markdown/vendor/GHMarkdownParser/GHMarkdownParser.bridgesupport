@@ -1,0 +1,21 @@
+<?xml version='1.0'?>
+<signatures version='1.0'>
+<class name='GHMarkdownParser'>
+<method class_method='true' selector='HTMLStringFromMarkdownString:'>
+<arg declared_type='NSString*' type='@' index='0' name='markdownString'/>
+<retval declared_type='NSString*' type='@'/>
+</method>
+<method class_method='true' selector='flavoredHTMLStringFromMarkdownString:'>
+<arg declared_type='NSString*' type='@' index='0' name='markdownString'/>
+<retval declared_type='NSString*' type='@'/>
+</method>
+</class>
+<class name='NSString'>
+<method selector='HTMLStringFromMarkdown'>
+<retval declared_type='NSString*' type='@'/>
+</method>
+<method selector='flavoredHTMLStringFromMarkdown'>
+<retval declared_type='NSString*' type='@'/>
+</method>
+</class>
+</signatures>
