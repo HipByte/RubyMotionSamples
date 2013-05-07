@@ -1,5 +1,4 @@
 class ABPerson
-
   # Pull first and last name, organization, and record flags
   # If the entry is a company, display the organization name instead
   def displayName
@@ -31,5 +30,4 @@ class ABPerson
       'n/a'
     end
   end
-  
 end
