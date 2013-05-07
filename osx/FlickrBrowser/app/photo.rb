@@ -17,7 +17,14 @@ class Photo
     :IKImageBrowserNSImageRepresentationType
   end
   
+  PhotoDownloadFinishedNotification = 'PhotoDownloadFinishedNotification'
+
   def imageRepresentation    
-    @image ||= NSImage.alloc.initByReferencingURL(@url)
+    @image ||= begin
+      Dispatch::Queue.concurrent.async do
+        @image = NSImage.alloc.initWithContentsOfURL(@url)
+        Dispatch::Queue.main.sync { NSNotificationCenter.defaultCenter.postNotificationName(PhotoDownloadFinishedNotification, object:self) }
+      end
+    end
   end
 end
