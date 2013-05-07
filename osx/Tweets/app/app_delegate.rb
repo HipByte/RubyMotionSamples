@@ -31,12 +31,12 @@ class AppDelegate
     @mainWindow.contentView.addSubview(scroll_view)
 
     @table_view = NSTableView.alloc.init
-    column_avator = NSTableColumn.alloc.initWithIdentifier("avatar")
-    column_avator.editable = false
-    column_avator.headerCell.title = "Avatar"
-    column_avator.width = 40
-    column_avator.dataCell = NSImageCell.alloc.init
-    @table_view.addTableColumn(column_avator)
+    column_avatar = NSTableColumn.alloc.initWithIdentifier("avatar")
+    column_avatar.editable = false
+    column_avatar.headerCell.title = "Avatar"
+    column_avatar.width = 40
+    column_avatar.dataCell = NSImageCell.alloc.init
+    @table_view.addTableColumn(column_avatar)
 
     column_name = NSTableColumn.alloc.initWithIdentifier("name")
     column_name.editable = false
