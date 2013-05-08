@@ -34,10 +34,11 @@ class MyWindowController < NSWindowController
       defer: false)
     @mainWindow.title = "Lake Don Pedro"
     @mainWindow.delegate = self
+    @mainWindow.setMinSize(NSMakeSize(467, 432))
     @mainWindow.orderFrontRegardless
 
     @slideView = SlideshowView.alloc.initWithFrame(NSMakeRect(20, 69, 427, 321))
-    @slideView.setAutoresizingMask(NSViewMinXMargin|NSViewMaxXMargin|NSViewMinYMargin|NSViewMaxYMargin|NSViewWidthSizable|NSViewHeightSizable)
+    @slideView.setAutoresizingMask(NSViewWidthSizable|NSViewHeightSizable)
     @mainWindow.contentView.addSubview(@slideView)
 
     label = NSTextField.alloc.initWithFrame(NSMakeRect(10, 25, 75, 14))
@@ -45,6 +46,7 @@ class MyWindowController < NSWindowController
     label.bordered = false
     label.editable = false
     label.drawsBackground = false
+    label.setAutoresizingMask(NSViewMaxXMargin|NSViewMaxYMargin)
     @mainWindow.contentView.addSubview(label)
 
     @transitionChoicePopup = NSPopUpButton.alloc.initWithFrame(NSMakeRect(87, 20, 243, 22))
@@ -59,7 +61,7 @@ class MyWindowController < NSWindowController
     button.setAction("goTransitionAction:")
     button.setTarget(self)
     button.bezelStyle = NSSmallSquareBezelStyle
-    button.setAutoresizingMask(NSViewMinXMargin|NSViewMaxXMargin|NSViewMinYMargin|NSViewMaxYMargin)
+    button.setAutoresizingMask(NSViewMinXMargin|NSViewMinYMargin|NSViewMaxYMargin)
     @mainWindow.contentView.addSubview(button)
   end
 
