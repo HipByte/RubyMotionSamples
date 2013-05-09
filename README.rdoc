@@ -8,13 +8,13 @@ This repository contains a collection of RubyMotion examples.
 
 == Projects
 
-Each one of the sub-directories in this repository is a genuine RubyMotion project that demonstrates one or more particular features of iOS.
+Each one of the sub-directories in this repository is a genuine RubyMotion project that demonstrates one or more particular features of iOS or OSX.
 
 Check their +README+ files to know more. Type +rake+ from there to build and try the sample in the simulator. You can find the full source code from their +app+ directory.
 
-For instance, to try the +Tweets+ sample:
+For instance, to try the iOS +Tweets+ sample:
 
-  $ cd Tweets
+  $ cd ios/Tweets
   $ rake
 
 If you have a sample to contribute, please create a pull request!

@@ -1,0 +1,14 @@
+# -*- coding: utf-8 -*-
+$:.unshift("/Library/RubyMotion/lib")
+require 'motion/project/template/osx'
+require 'rubygems'
+require 'motion-cocoapods'
+
+Motion::Project::App.setup do |app|
+  # Use `rake config' to see complete project settings.
+  app.name = 'Markdown'
+  app.frameworks << 'WebKit'
+  app.pods do
+    pod "GHMarkdownParser"
+  end
+end

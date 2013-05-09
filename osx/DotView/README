@@ -1,0 +1,4 @@
+DotView.app
+
+This sample demonstrates the following concepts: NSView subclassing,
+event handling, bezier path drawing, slider, color well button.
