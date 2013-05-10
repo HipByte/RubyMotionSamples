@@ -1,6 +1,6 @@
 describe "Application 'Tweets'" do
   before do
-    @app = UIApplication.sharedApplication
+    @app = NSApplication.sharedApplication
   end
 
   it "has one window" do
