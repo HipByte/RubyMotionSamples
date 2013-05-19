@@ -1,0 +1,38 @@
+varying vec2 v_TextureCoordinate;
+varying vec3 v_LightVector;
+varying vec3 v_EyeVector;
+
+uniform sampler2D u_TextureNormal;
+uniform sampler2D u_TextureColor;
+uniform sampler2D u_TextureSpecular;
+uniform sampler2D u_TextureNight;
+
+
+void main() {
+	float distSqr = dot(v_LightVector, v_LightVector);
+	vec3 lVec = v_LightVector * inversesqrt(distSqr);
+
+	vec3 vVec = normalize(v_EyeVector);
+	
+	vec4 baseColor = texture2D(u_TextureColor, v_TextureCoordinate);
+	vec4 nightColor = texture2D(u_TextureNight, v_TextureCoordinate);
+	vec4 specularColor = texture2D(u_TextureSpecular, v_TextureCoordinate);
+
+	vec3 bumpedNormal = normalize( texture2D(u_TextureNormal, v_TextureCoordinate).xyz * 2.0 - 1.0);
+
+	float diffuse = max(0.0, dot(lVec, bumpedNormal));
+	vec3 reflectDir = reflect(lVec, bumpedNormal);
+	float specular = max(dot(normalize(v_EyeVector), reflectDir), 0.0);
+	specular = specularColor.w * pow(specular, 70.0);
+        
+    float lightFactor = diffuse + specular;
+	
+	vec4 dayColor = baseColor * diffuse + specularColor * specular;
+	dayColor.w = 1.0;
+	gl_FragColor = dayColor;
+	
+	if(lightFactor < 0.1) {
+		gl_FragColor = mix(nightColor, dayColor, (lightFactor + 0.1) * 5.0);
+	}
+	gl_FragColor.w = baseColor.w;
+}
