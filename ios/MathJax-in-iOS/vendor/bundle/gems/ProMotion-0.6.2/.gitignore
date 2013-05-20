@@ -1,0 +1,16 @@
+/target
+/classes
+/checkouts
+pom.xml
+*.jar
+*.class
+.lein-deps-sum
+.lein-failures
+.lein-plugins
+/build
+.DS_Store
+*.clj
+.rvmrc
+*.gem
+.repl_history
+.dat*
