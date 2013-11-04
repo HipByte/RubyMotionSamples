@@ -50,8 +50,6 @@ class RootController < UITableViewController
     @detail_controller ||= DetailController.alloc.init
     @detail_controller.selected_font(font_name)
     self.navigationController.pushViewController(@detail_controller, animated:true)
-
-    tableView.deselectRowAtIndexPath(indexPath, animated:true)
   end
 
   def fonts

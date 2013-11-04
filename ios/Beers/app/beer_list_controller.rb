@@ -23,6 +23,7 @@ class BeerListController < UITableViewController
     cell = tableView.dequeueReusableCellWithIdentifier(CELLID) || begin
       cell = UITableViewCell.alloc.initWithStyle(UITableViewCellStyleDefault, reuseIdentifier:CELLID)
       cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton
+      cell.selectionStyle = UITableViewCellSelectionStyleNone
       cell
     end
 
