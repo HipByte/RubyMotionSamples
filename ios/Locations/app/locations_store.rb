@@ -1,7 +1,8 @@
 class LocationsStore
   def self.shared
     # Our store is a singleton object.
-    @shared ||= LocationsStore.new
+    Dispatch.once { @instance ||= new }
+    @instance
   end
 
   def locations
