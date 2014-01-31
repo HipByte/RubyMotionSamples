@@ -24,6 +24,12 @@ class MyWindowController < NSWindowController
     @slideView.transitionToImage(@donPedro1)
     @curSlide1 = true
 
+    dict = NSDictionary.dictionaryWithContentsOfFile("/System/Library/CoreServices/SystemVersion.plist")
+    if dict.objectForKey("ProductVersion") >= "10.9"
+      # http://stackoverflow.com/questions/19540070/adding-cifilter-to-calayer-under-mavericks
+      @slideView.layerUsesCoreImageFilters = true
+    end
+
     self
   end
 
