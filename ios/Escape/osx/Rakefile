@@ -1,0 +1,17 @@
+# -*- coding: utf-8 -*-
+$:.unshift("/Library/RubyMotion/lib")
+require 'motion/project/template/osx'
+
+begin
+  require 'bundler'
+  Bundler.require
+rescue LoadError
+end
+
+Motion::Project::App.setup do |app|
+  # Use `rake config' to see complete project settings.
+  app.name = 'Escape'
+  app.files += Dir.glob(File.join(File.dirname(__FILE__), '../app/**/*.rb'))
+  app.resources_dirs << '../resources'
+  app.frameworks += %W{SpriteKit}
+end
