@@ -26,8 +26,8 @@ class RedditController < UITableViewController
       end
 
       new_posts = []
-      json['results'].each do |dict|
-        new_posts << Tweet.new(dict)
+      json['data']['children'].each do |dict|
+       new_posts << Post.new(dict['data'])
       end
 
       Dispatch::Queue.main.sync { load_posts(new_posts) }
@@ -55,16 +55,16 @@ class RedditController < UITableViewController
   end
 
   def tableView(tableView, heightForRowAtIndexPath:indexPath)
-    TweetCell.heightForTweet(@posts[indexPath.row], tableView.frame.size.width)
+    PostCell.heightForTweet(@posts[indexPath.row], tableView.frame.size.width)
   end
 
   def tableView(tableView, cellForRowAtIndexPath:indexPath)
-    tweet = @posts[indexPath.row]
-    TweetCell.cellForTweet(tweet, inTableView:tableView)
+    post = @posts[indexPath.row]
+    PostCell.cellForTweet(post, inTableView:tableView)
   end
   
-  def reloadRowForTweet(tweet)
-    row = @posts.index(tweet)
+  def reloadRowForTweet(post)
+    row = @posts.index(post)
     if row
       view.reloadRowsAtIndexPaths([NSIndexPath.indexPathForRow(row, inSection:0)], withRowAnimation:false)
     end
