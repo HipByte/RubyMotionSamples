@@ -1,6 +1,6 @@
-class TweetsController < UITableViewController
+class RedditController < UITableViewController
   def viewDidLoad
-    @tweets = []
+    @posts = []
     searchBar = UISearchBar.alloc.initWithFrame(CGRectMake(0, 0, self.tableView.frame.size.width, 0))
     searchBar.delegate = self;
     searchBar.showsCancelButton = true;
@@ -8,15 +8,15 @@ class TweetsController < UITableViewController
     view.tableHeaderView = searchBar
     view.dataSource = view.delegate = self
 
-    searchBar.text = 'xcode crash'
+    searchBar.text = 'funny'
     searchBarSearchButtonClicked(searchBar)
   end
 
   def searchBarSearchButtonClicked(searchBar)
     query = searchBar.text.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
-    url = "http://search.twitter.com/search.json?q=#{query}"
+    url = "http://www.reddit.com/search.json?q=#{query}"
 
-    @tweets.clear
+    @posts.clear
     Dispatch::Queue.concurrent.async do 
       json = nil
       begin
@@ -25,12 +25,12 @@ class TweetsController < UITableViewController
         presentError e.message
       end
 
-      new_tweets = []
-      json['results'].each do |dict|
-        new_tweets << Tweet.new(dict)
+      new_posts = []
+      json['data']['children'].each do |dict|
+       new_posts << Post.new(dict['data'])
       end
 
-      Dispatch::Queue.main.sync { load_tweets(new_tweets) }
+      Dispatch::Queue.main.sync { load_posts(new_posts) }
     end
 
     searchBar.resignFirstResponder
@@ -40,8 +40,8 @@ class TweetsController < UITableViewController
     searchBar.resignFirstResponder
   end
 
-  def load_tweets(tweets)
-    @tweets = tweets
+  def load_posts(posts)
+    @posts = posts
     view.reloadData
   end
  
@@ -51,20 +51,20 @@ class TweetsController < UITableViewController
   end
  
   def tableView(tableView, numberOfRowsInSection:section)
-    @tweets.size
+    @posts.size
   end
 
   def tableView(tableView, heightForRowAtIndexPath:indexPath)
-    TweetCell.heightForTweet(@tweets[indexPath.row], tableView.frame.size.width)
+    PostCell.heightForPost(@posts[indexPath.row], tableView.frame.size.width)
   end
 
   def tableView(tableView, cellForRowAtIndexPath:indexPath)
-    tweet = @tweets[indexPath.row]
-    TweetCell.cellForTweet(tweet, inTableView:tableView)
+    post = @posts[indexPath.row]
+    PostCell.cellForPost(post, inTableView:tableView)
   end
   
-  def reloadRowForTweet(tweet)
-    row = @tweets.index(tweet)
+  def reloadRowForPost(post)
+    row = @posts.index(post)
     if row
       view.reloadRowsAtIndexPaths([NSIndexPath.indexPathForRow(row, inSection:0)], withRowAnimation:false)
     end
