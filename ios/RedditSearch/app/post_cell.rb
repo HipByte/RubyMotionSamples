@@ -2,9 +2,9 @@ class PostCell < UITableViewCell
   CellID = 'CellIdentifier'
   MessageFontSize = 14
 
-  def self.cellForTweet(post, inTableView:tableView)
+  def self.cellForPost(post, inTableView:tableView)
     cell = tableView.dequeueReusableCellWithIdentifier(PostCell::CellID) || PostCell.alloc.initWithStyle(UITableViewCellStyleDefault, reuseIdentifier:CellID)
-    cell.fillWithTweet(post, inTableView:tableView)
+    cell.fillWithPost(post, inTableView:tableView)
     cell
   end
  
@@ -16,7 +16,7 @@ class PostCell < UITableViewCell
     self
   end
  
-  def fillWithTweet(post, inTableView:tableView)
+  def fillWithPost(post, inTableView:tableView)
     self.textLabel.text = post.message
     
     unless post.profile_image
@@ -27,7 +27,7 @@ class PostCell < UITableViewCell
           post.profile_image = UIImage.alloc.initWithData(profile_image_data)
           Dispatch::Queue.main.sync do
             self.imageView.image = post.profile_image
-            tableView.delegate.reloadRowForTweet(post)
+            tableView.delegate.reloadRowForPost(post)
           end
         end
       end
@@ -36,7 +36,7 @@ class PostCell < UITableViewCell
     end
   end
 
-  def self.heightForTweet(post, width)
+  def self.heightForPost(post, width)
     constrain = CGSize.new(width - 57, 1000)
     size = post.message.sizeWithFont(UIFont.systemFontOfSize(MessageFontSize), constrainedToSize:constrain)
     [57, size.height + 8].max

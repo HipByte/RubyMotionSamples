@@ -6,7 +6,6 @@ class Post
     @author = dict['author']
     @message = dict['title']
     @profile_image_url = dict['thumbnail'] 
-    #@profile_image = (@profile_image_url) ? (nil) : (UIImage.imageNamed('reddit'))
     @profile_image = nil
   end
 end

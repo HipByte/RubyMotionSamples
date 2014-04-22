@@ -55,15 +55,15 @@ class RedditController < UITableViewController
   end
 
   def tableView(tableView, heightForRowAtIndexPath:indexPath)
-    PostCell.heightForTweet(@posts[indexPath.row], tableView.frame.size.width)
+    PostCell.heightForPost(@posts[indexPath.row], tableView.frame.size.width)
   end
 
   def tableView(tableView, cellForRowAtIndexPath:indexPath)
     post = @posts[indexPath.row]
-    PostCell.cellForTweet(post, inTableView:tableView)
+    PostCell.cellForPost(post, inTableView:tableView)
   end
   
-  def reloadRowForTweet(post)
+  def reloadRowForPost(post)
     row = @posts.index(post)
     if row
       view.reloadRowsAtIndexPaths([NSIndexPath.indexPathForRow(row, inSection:0)], withRowAnimation:false)
