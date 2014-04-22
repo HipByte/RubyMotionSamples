@@ -4,8 +4,9 @@ class Post
 
   def initialize(dict)
     @author = dict['author']
-    @message = dict['selftext']
-    @profile_image_url = "http://www.mr-mojo-risin.net/wp-content/uploads/2010/11/icon_reddit_01.png" #dict['profile_image_url']
+    @message = dict['title']
+    @profile_image_url = dict['thumbnail'] 
+    #@profile_image = (@profile_image_url) ? (nil) : (UIImage.imageNamed('reddit'))
     @profile_image = nil
   end
 end

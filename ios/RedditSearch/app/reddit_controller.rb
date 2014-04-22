@@ -8,7 +8,7 @@ class RedditController < UITableViewController
     view.tableHeaderView = searchBar
     view.dataSource = view.delegate = self
 
-    searchBar.text = 'xcode crash'
+    searchBar.text = 'funny'
     searchBarSearchButtonClicked(searchBar)
   end
 

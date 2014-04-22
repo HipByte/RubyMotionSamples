@@ -20,7 +20,7 @@ class PostCell < UITableViewCell
     self.textLabel.text = post.message
     
     unless post.profile_image
-      self.imageView.image = nil
+      self.imageView.image = UIImage.imageNamed('reddit')
       Dispatch::Queue.concurrent.async do
         profile_image_data = NSData.alloc.initWithContentsOfURL(NSURL.URLWithString(post.profile_image_url))
         if profile_image_data
