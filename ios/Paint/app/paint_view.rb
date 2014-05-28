@@ -1,5 +1,5 @@
 class PaintView < UIView
-  def initWithFrame(ect)
+  def initWithFrame(rect)
     if super
       path = NSBundle.mainBundle.pathForResource('erase', ofType:'caf')
       url = NSURL.fileURLWithPath(path)

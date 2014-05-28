@@ -24,18 +24,48 @@ class CircleLayout < UICollectionViewLayout
     (0...@cell_count).map { |i| layoutAttributesForItemAtIndexPath(NSIndexPath.indexPathForItem(i, inSection:0)) }
   end
 
-  def initialLayoutAttributesForInsertedItemAtIndexPath(path)
-    layoutAttributesForItemAtIndexPath(path).tap do |obj|
-      obj.alpha = 0.0
-      obj.center = @center
+  def prepareForCollectionViewUpdates(items)
+    super
+    
+    @deletePaths = []
+    @insertPaths = []
+    
+    items.each do |i|
+      case i.updateAction
+      when UICollectionUpdateActionDelete
+        @deletePaths << i.indexPathBeforeUpdate
+      when UICollectionUpdateActionInsert
+        @insertPaths << i.indexPathAfterUpdate
+      end
     end
   end
 
-  def finalLayoutAttributesForDeletedItemAtIndexPath(path)
-    layoutAttributesForItemAtIndexPath(path).tap do |obj|
-      obj.alpha = 0.0
-      obj.center = @center
-      obj.transform3D = CATransform3DMakeScale(0.1, 0.1, 1.0)
+  def initialLayoutAttributesForAppearingItemAtIndexPath(path)
+    attributes = super
+
+    if attributes.nil? && @insertPaths.include?(path)
+      attributes = layoutAttributesForItemAtIndexPath path
+      
+      attributes.alpha = 0.0
+      attributes.center = CGPointMake(@center.x, @center.y)
     end
+    
+    attributes
   end
+
+
+  def finalLayoutAttributesForDisappearingItemAtIndexPath(path)
+    attributes = super
+
+    if attributes.nil? && @deletePaths.include?(path)
+      attributes = layoutAttributesForItemAtIndexPath path
+      
+      attributes.alpha = 0.0
+      attributes.center = CGPointMake(@center.x, @center.y)
+      attributes.transform3D = CATransform3DMakeScale(0.1, 0.1, 1.0)
+    end
+    
+    attributes
+  end
+
 end

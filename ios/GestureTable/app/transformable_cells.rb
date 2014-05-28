@@ -1,5 +1,5 @@
 class TransformableTableViewCell < UITableViewCell
-  attr_accessor :finishedHeight, :tintColor
+  attr_accessor :finishedHeight
 
   def self.transformableTableViewCellWithStyle(style, reuseIdentifier: reuseIdentifier)
     case style
@@ -10,6 +10,14 @@ class TransformableTableViewCell < UITableViewCell
     else
       raise ArgumentError, "Style must be :pullDown or :unfolding"
     end
+  end
+
+  def tinyColor=(tinyColor)
+    @tinyColor = tinyColor
+  end
+
+  def tinyColor
+    @tinyColor
   end
 end
 

@@ -48,7 +48,6 @@ class SceneController < NSViewController
     myBitmapContext = CGBitmapContextCreate(myData, width, height, 8, width*4, space, KCGBitmapByteOrder32Host | KCGImageAlphaPremultipliedFirst)
     CGContextSetBlendMode(myBitmapContext, KCGBlendModeCopy)
     CGContextDrawImage(myBitmapContext, rect, myImageRef)
-    CGContextRelease(myBitmapContext)
     
     glPixelStorei(GL_UNPACK_ROW_LENGTH, width)
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1)
