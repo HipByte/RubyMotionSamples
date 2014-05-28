@@ -1,0 +1,11 @@
+# -*- coding: utf-8 -*-
+$:.unshift("../../lib")
+require 'motion/project/template/android'
+
+Motion::Project::App.setup do |app|
+  # Use `rake config' to see complete project settings.
+  app.name = 'Hello'
+  app.api_version = '18' 
+  app.sdk_path = File.expand_path('~/src/android-sdk-macosx')
+  app.ndk_path = File.expand_path('~/src/android-ndk-r9d')
+end

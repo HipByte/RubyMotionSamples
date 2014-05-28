@@ -1,0 +1,13 @@
+.repl_history
+build
+tags
+.DS_Store
+nbproject
+.redcar
+#*#
+*~
+*.sw[po]
+.eprj
+.sass-cache
+.idea
+.dat*.*
