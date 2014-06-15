@@ -1,7 +1,5 @@
 class TimerButtonListener < Java::Lang::Object
-  def set_activity(activity)
-    @activity = activity
-  end
+  attr_accessor :activity
 
   def onClick(view)
     @activity.toggleTimer
@@ -9,9 +7,7 @@ class TimerButtonListener < Java::Lang::Object
 end
 
 class TimerTask < Java::Util::TimerTask
-  def set_activity(activity)
-    @activity = activity
-  end
+  attr_accessor :activity
 
   def run
     @activity.handler.post -> { @activity.updateTimer }
@@ -19,6 +15,8 @@ class TimerTask < Java::Util::TimerTask
 end
 
 class MainActivity < Android::App::Activity
+  attr_reader :handler
+
   def onCreate(savedInstanceState)
     super
     @handler = Android::Os::Handler.new
@@ -35,15 +33,11 @@ class MainActivity < Android::App::Activity
     @button = Android::Widget::Button.new(self)
     @button.text = 'Start'
     listener = TimerButtonListener.new
-    listener.set_activity self
+    listener.activity = self
     @button.onClickListener = listener
     layout.addView(@button)
 
     self.contentView = layout
-  end
-
-  def handler
-    @handler
   end
 
   def toggleTimer
@@ -55,7 +49,7 @@ class MainActivity < Android::App::Activity
       @timer = Java::Util::Timer.new
       @counter = 0
       task = TimerTask.new
-      task.set_activity self
+      task.activity = self
       @timer.schedule task , 0, 100
       @button.text = 'Stop'
     end

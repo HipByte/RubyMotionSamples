@@ -1,4 +1,6 @@
 class MainActivity < Android::App::Activity
+  attr_reader :webview, :handler
+
   def onCreate(savedInstanceState)
     super
     @handler = Android::Os::Handler.new
@@ -12,27 +14,17 @@ class MainActivity < Android::App::Activity
 
     @webview.webChromeClient = MyWebChromeClient.new
     js_interface = DemoJavaScriptInterface.new
-    js_interface.set_context(self)
+    js_interface.context = self
     @webview.addJavascriptInterface(js_interface, "demo")
 
     @webview.loadUrl("file:///android_asset/demo.html")
 
     self.contentView = @webview
   end
-
-  def webview
-    @webview
-  end
-
-  def handler
-    @handler
-  end
 end
 
 class DemoJavaScriptInterface < Java::Lang::Object
-  def set_context(context)
-    @context = context
-  end
+  attr_accessor :context
 
   __annotation__('@android.webkit.JavascriptInterface')
   def clickOnAndroid
