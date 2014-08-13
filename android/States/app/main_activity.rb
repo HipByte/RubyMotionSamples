@@ -68,6 +68,10 @@ class MainActivity < Android::App::Activity
     # Calling Android::R.layout.simple_list_item_1 with RM 3.0 b0.3 results in:
     #
     # Exception raised: NoMethodError: undefined method `layout' for android.R:java.lang.Class
+    #
+    # Documentation of R.layout:
+    # http://developer.android.com/reference/android/R.layout.html
+
     Android::Widget::ArrayAdapter.new(self, 17367043, states)
   end
 
