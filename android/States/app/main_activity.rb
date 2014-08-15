@@ -18,4 +18,8 @@ class MainActivity < Android::App::Activity
     puts 'clicked'
   end
 
+  def onNothingSelected(parent)
+    puts 'nothing'
+  end
+
 end
