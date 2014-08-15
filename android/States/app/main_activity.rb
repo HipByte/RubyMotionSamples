@@ -4,7 +4,7 @@ class MainActivity < Android::App::Activity
     super
 
     @list = Android::Widget::ListView.new(self)
-    @list.setAdapter(adapter)
+    @list.adapter = adapter
 
     self.contentView = @list
   end
