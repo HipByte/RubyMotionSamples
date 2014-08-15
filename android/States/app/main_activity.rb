@@ -3,10 +3,10 @@ class MainActivity < Android::App::Activity
   def onCreate(savedInstanceState)
     super
 
-    @list = Android::Widget::ListView.new(self)
-    @list.adapter = adapter
+    list = Android::Widget::ListView.new(self)
+    list.adapter = adapter
 
-    self.contentView = @list
+    self.contentView = list
   end
 
   def adapter
