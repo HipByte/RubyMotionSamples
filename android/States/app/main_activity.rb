@@ -5,7 +5,7 @@ class MainActivity < Android::App::Activity
 
     list = Android::Widget::ListView.new(self)
     list.adapter = adapter
-    list.onItemSelectedListener = self
+    list.onItemClickListener = self
 
     self.contentView = list
   end
@@ -14,12 +14,8 @@ class MainActivity < Android::App::Activity
     Android::Widget::ArrayAdapter.new(self, Android::R::Layout::Simple_list_item_1, States.all)
   end
 
-  def onItemSelected(parent, view, position, id)
+  def onItemClick(parent, view, position, id)
     puts 'clicked'
-  end
-
-  def onNothingSelected(parent)
-    puts 'nothing'
   end
 
 end
