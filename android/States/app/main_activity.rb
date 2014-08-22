@@ -15,7 +15,11 @@ class MainActivity < Android::App::Activity
   end
 
   def onItemClick(parent, view, position, id)
-    puts 'clicked'
+    puts "Clicked #{States.all[position]}"
+
+    intent = Android::Content::Intent.new(self, WikipediaActivity)
+    intent.putExtra("state", States.all[position])
+    startActivity(intent)
   end
 
 end
