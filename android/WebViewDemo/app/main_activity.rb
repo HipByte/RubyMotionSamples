@@ -23,7 +23,7 @@ class MainActivity < Android::App::Activity
   end
 end
 
-class DemoJavaScriptInterface < Java::Lang::Object
+class DemoJavaScriptInterface
   attr_accessor :context
 
   __annotation__('@android.webkit.JavascriptInterface')

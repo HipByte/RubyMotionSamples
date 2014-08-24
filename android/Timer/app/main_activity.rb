@@ -1,4 +1,4 @@
-class TimerButtonListener < Java::Lang::Object
+class TimerButtonListener
   attr_accessor :activity
 
   def onClick(view)
