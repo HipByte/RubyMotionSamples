@@ -10,6 +10,8 @@ class TimerTask < Java::Util::TimerTask
   attr_accessor :activity
 
   def run
+    # This method will be called from another thread, and UI work must
+    # happen in the main thread, so we dispatch it via a Handler object.
     @activity.handler.post -> { @activity.updateTimer }
   end
 end
