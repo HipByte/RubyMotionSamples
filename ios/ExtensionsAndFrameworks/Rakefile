@@ -1,0 +1,22 @@
+# -*- coding: utf-8 -*-
+$:.unshift("/Library/RubyMotion/lib")
+require 'motion/project/template/ios'
+
+begin
+  require 'bundler'
+  Bundler.require
+rescue LoadError
+end
+
+Motion::Project::App.setup do |app|
+  # Use `rake config' to see complete project settings.
+  app.name = 'ExtensionsAndFrameworks'
+
+  app.sdk_version = '8.0'
+  app.deployment_target = '8.0'
+
+  app.target("extensions/today-extension", :extension)
+  app.target("extensions/custom-keyboard", :extension)
+
+  app.target("frameworks/my-shared-framework", :framework)
+end
