@@ -23,3 +23,14 @@ As well as the framework target in the main app and each extension Rakefile:
 ```ruby
 app.target("frameworks/my-shared-framework", :framework)
 ```
+
+## 64bit
+
+According to Apple's guidelines, all app extensions must be compiled for the  *arm64* architecture or they will be rejected from the AppStore. Additionally, host apps that link to an embedded framework must also be compiled for the *arm64* architecture.
+
+RubyMotion apps do not compile for the *arm64* architecture by default, but you can easily turn it on (as well as the 64 bit simulator) by adding these two lines to the *Rakefile* of each target as well as your main application.
+
+```ruby
+app.archs['iPhoneOS'] << "arm64"
+app.archs['iPhoneSimulator'] << "x86_64"
+```

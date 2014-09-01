@@ -23,4 +23,7 @@ Motion::Project::App.setup do |app|
   }
 
   app.target("../../frameworks/my-shared-framework", :framework)
+
+  app.archs['iPhoneOS'] << "arm64"
+  app.archs['iPhoneSimulator'] << "x86_64"
 end
