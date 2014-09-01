@@ -1,0 +1,26 @@
+# -*- coding: utf-8 -*-
+$:.unshift("/Library/RubyMotion/lib")
+require 'motion/project/template/ios-extension.rb'
+
+begin
+  require 'bundler'
+  Bundler.require
+rescue LoadError
+end
+
+Motion::Project::App.setup do |app|
+  # Use `rake config' to see complete project settings.
+  app.name = 'custom-keyboard'
+  app.info_plist['NSExtension'] = {
+    "NSExtensionAttributes" => {
+      "IsASCIICapable" => false,
+      "PrefersRightToLeft" => false,
+      "PrimaryLanguage" => "en-US",
+      "RequestsOpenAccess" => false
+    },
+    "NSExtensionPointIdentifier" => "com.apple.keyboard-service",
+    "NSExtensionPrincipalClass" => "KeyboardViewController"
+  }
+
+  app.target("../../frameworks/my-shared-framework", :framework)
+end
