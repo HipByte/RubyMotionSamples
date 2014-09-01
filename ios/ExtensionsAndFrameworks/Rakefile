@@ -14,6 +14,8 @@ Motion::Project::App.setup do |app|
 
   app.sdk_version = '8.0'
   app.deployment_target = '8.0'
+  app.archs['iPhoneOS'] << "arm64"
+  app.archs['iPhoneSimulator'] << "x86_64"
 
   app.target("extensions/today-extension", :extension)
   app.target("extensions/custom-keyboard", :extension)
