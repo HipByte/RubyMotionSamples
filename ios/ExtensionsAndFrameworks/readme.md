@@ -1,5 +1,5 @@
 
-The app showcases the use of extension and framework targets in iOS. This were the console commands used to create the main app and targets:
+This app showcases the use of extension and framework targets in iOS. These were the console commands used to create the main app and targets:
 
 ```bash
 motion create ExtensionsAndFrameworks --template=ios
