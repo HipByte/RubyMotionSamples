@@ -1,0 +1,40 @@
+# -*- coding: utf-8 -*-
+$:.unshift("/Library/RubyMotionPre/lib")
+require 'motion/project/template/android'
+
+Motion::Project::App.setup do |app|
+  # Use `rake config' to see complete project settings.
+  app.name = 'RubyMotion #inspect 2014'
+  app.version('4', '1.3')
+  app.api_version = '18'
+  app.icon = 'icon'
+  app.package = 'com.hipbyte.inspect2014'
+
+  # Vendor the android-support library which provides the drawer functionality.
+  app.vendor_project :jar => 'vendor/android-support-v4.jar'
+
+  # Vendor the Google Play Services library which provides the Maps functionality.
+  app.vendor_project :jar => 'vendor/google-play-services_lib/libs/google-play-services.jar', :resources => 'vendor/google-play-services_lib/res', :manifest => 'vendor/google-play-services_lib/AndroidManifest.xml'
+
+  # The Google Play Services library requires special permissions for mapping.
+  %w{ACCESS_NETWORK_STATE ACCESS_FINE_LOCATION INTERNET WRITE_EXTERNAL_STORAGE}.each do |perm|
+    app.manifest_entry('uses-permission', :name => "android.permission.#{perm}")
+  end
+  app.manifest_entry('uses-permission', :name => 'com.google.android.providers.gsf.permission.READ_GSERVICES')
+
+  # Enable the Google Play Services library in the manifest file.
+  app.manifest_entry('application', 'meta-data', :name => 'com.google.android.gms.version', :value => '@integer/google_play_services_version')
+
+  # Log messages from the Google Play Services library to the developer console.
+  app.logs_components << 'GooglePlayServicesUtil:I'
+
+  if app.release?
+    # In release mode, we have to specify the release key.
+    app.release_keystore(File.expand_path('~/my-release-key.keystore'), 'release-key')
+    # Release mode has a dedicated Google Play Services API key.
+    app.manifest_entry('application', 'meta-data', :name => 'com.google.android.maps.v2.API_KEY', :value => 'FIXME')
+  else
+    # Development mode has a dedicated Google Play Services API key.
+    app.manifest_entry('application', 'meta-data', :name => 'com.google.android.maps.v2.API_KEY', :value => 'AIzaSyDTePnnx0_CqHkcjV6UjgGoKANyHCAKM78')
+  end
+end
