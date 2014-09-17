@@ -40,3 +40,8 @@ In addition to this you can observe the creation of new views in the REPL consol
 
 * * *
 
+### Screenshots
+
+![http://i.imgur.com/bYm7bRw.png](http://i.imgur.com/bYm7bRw.png)
+![http://i.imgur.com/bA8XOfn.png](http://i.imgur.com/bA8XOfn.png)
+
