@@ -5,4 +5,8 @@ Motion::Project::App.setup do |app|
   # Use `rake config' to see complete project settings.
   app.name = 'Locations'
   app.frameworks += ['CoreData', 'CoreLocation']
+
+  # Description for the Location service allow dialog
+  app.info_plist['NSLocationAlwaysUsageDescription'] = 'Description'
+  app.info_plist['NSLocationWhenInUseUsageDescription'] = 'Description'
 end

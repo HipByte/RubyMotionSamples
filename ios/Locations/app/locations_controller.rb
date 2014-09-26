@@ -11,6 +11,9 @@ class LocationsController < UITableViewController
     # The Add button is disabled by default, and will be enabled once the location manager is ready to return the current location.
     navigationItem.rightBarButtonItem.enabled = false
     @location_manager ||= CLLocationManager.alloc.init.tap do |lm|
+      # since iOS 8 a request to use the location must be sent
+      lm.requestWhenInUseAuthorization
+
       lm.desiredAccuracy = KCLLocationAccuracyNearestTenMeters
       lm.startUpdatingLocation
       lm.delegate = self
@@ -57,7 +60,7 @@ class LocationsController < UITableViewController
   end
 
   def locationManager(manager, didUpdateToLocation:newLocation, fromLocation:oldLocation)
-    navigationItem.rightBarButtonItem.enabled = true 
+    navigationItem.rightBarButtonItem.enabled = true
   end
 
   def locationManager(manager, didFailWithError:error)
