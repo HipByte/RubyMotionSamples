@@ -38,7 +38,7 @@ class MainActivity < Android::App::Activity
     @drawerToggle = Android::Support::V4::App::ActionBarDrawerToggle.new(self, @drawerLayout, resources.getIdentifier('ic_drawer', 'drawable', packageName), resources.getIdentifier('drawer_open', 'string', packageName), resources.getIdentifier('drawer_close', 'string', packageName))
     @drawerLayout.drawerListener = @drawerToggle
 
-    @fragments = [nil, nil, nil, nil, nil, nil]
+    @fragments = [nil, nil, nil, nil, nil]
     selectItem(0) unless savedInstanceState
   end
 
