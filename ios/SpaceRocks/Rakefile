@@ -9,6 +9,6 @@ rescue LoadError
 end
 
 Motion::Project::App.setup do |app|
-  app.name = "sample"
+  app.name = "SpaceRocks"
   app.frameworks += ["SpriteKit"]
 end
