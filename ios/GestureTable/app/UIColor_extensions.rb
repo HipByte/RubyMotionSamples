@@ -1,13 +1,15 @@
 class UIColor
+  CGFloat_Type = CGSize.type[/(f|d)/]
+
   def colorWithBrightness(brightnessComponent)
-    hue = Pointer.new(:float)
-    saturation = Pointer.new(:float)
-    brightness = Pointer.new(:float)
-    red = Pointer.new(:float)
-    green = Pointer.new(:float)
-    blue = Pointer.new(:float)
-    white = Pointer.new(:float)
-    alpha = Pointer.new(:float)
+    hue = Pointer.new(CGFloat_Type)
+    saturation = Pointer.new(CGFloat_Type)
+    brightness = Pointer.new(CGFloat_Type)
+    red = Pointer.new(CGFloat_Type)
+    green = Pointer.new(CGFloat_Type)
+    blue = Pointer.new(CGFloat_Type)
+    white = Pointer.new(CGFloat_Type)
+    alpha = Pointer.new(CGFloat_Type)
 
     if getHue(hue, saturation: saturation, brightness: brightness, alpha: alpha)
       UIColor.colorWithHue(hue[0], saturation: saturation[0], brightness: brightness[0] * brightnessComponent, alpha: alpha[0])
@@ -19,10 +21,10 @@ class UIColor
   end
 
   def colorWithHueOffset(hueOffset)
-    hue = Pointer.new(:float)
-    saturation = Pointer.new(:float)
-    brightness = Pointer.new(:float)
-    alpha = Pointer.new(:float)
+    hue = Pointer.new(CGFloat_Type)
+    saturation = Pointer.new(CGFloat_Type)
+    brightness = Pointer.new(CGFloat_Type)
+    alpha = Pointer.new(CGFloat_Type)
 
     if getHue(hue, saturation: saturation, brightness: brightness, alpha: alpha)
       newHue = (hue[0] + hueOffset) % 1
