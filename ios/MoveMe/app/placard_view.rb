@@ -65,7 +65,7 @@ class PlacardView < UIView
     @displayStringsIndex = 0 if @displayStringsIndex >= @displayStrings.length
 
     # Precalculate size of text and size of font so that text fits inside placard
-    fontSizePtr = Pointer.new(:float)
+    fontSizePtr = Pointer.new(CGSize.type[/(f|d)/])
     @textSize = @currentDisplayString.sizeWithFont(UIFont.systemFontOfSize(24),
                                                    minFontSize: 9.0,
                                                    actualFontSize: fontSizePtr,
