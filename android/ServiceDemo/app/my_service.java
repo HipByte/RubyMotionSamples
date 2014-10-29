@@ -1,0 +1,3 @@
+public MyService() {
+  super("MyService");
+}
