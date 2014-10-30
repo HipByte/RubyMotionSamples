@@ -31,7 +31,7 @@ class MainActivity < Android::App::Activity
     else
       # Start the service, passing the resource ID of the nyancat.ogg raw file, converted to a String.
       puts "Starting service"
-      intent.putExtra(MyService::ResourceToPlay, Com::Yourcompany::Servicedemo::R::Raw::Nyancat.to_s)
+      intent.putExtra(MyService::ResourceToPlay, R::Raw::Nyancat.to_s)
       startService(intent)
       @started = true
     end
