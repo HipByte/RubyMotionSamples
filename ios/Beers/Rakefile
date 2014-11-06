@@ -1,8 +1,13 @@
-$:.unshift("/Library/RubyMotion/lib")
+$:.unshift("/Users/lrz/src/RubyMotion/lib")
 require 'motion/project/template/ios'
 
 Motion::Project::App.setup do |app|
   # Use `rake config' to see complete project settings.
   app.name = 'Beers'
   app.frameworks += ['CoreLocation', 'MapKit', 'AddressBook']
+
+  app.deployment_target = '7.1'
+
+  app.archs['iPhoneOS'] = ['arm64']
+  app.provisioning_profile = "/Users/lrz/Downloads/lrzarm64dev.mobileprovision"
 end
