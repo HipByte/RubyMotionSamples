@@ -1,6 +1,9 @@
-# Email example
+Email.app
+=========
 
-An example of how to send email from within a RubyMotion app
+An example of how to send email from within a RubyMotion app.
+
+![ScreenShot](screenshot.png)
 
 The code contains a basic translation of Objective-C code from http://stackoverflow.com/a/1513433/94154.
 
