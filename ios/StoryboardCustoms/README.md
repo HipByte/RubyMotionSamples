@@ -1,12 +1,14 @@
-# RubyMotion Storyboard With Automatic View-Loading
-This is a [RubyMotion](http://www.rubymotion.com) sample project to demonstrate:  
+StoryboardCustoms.app
+=====================
+
+This is a RubyMotion sample project to demonstrate:  
 
 * Storyboard based view design
 * view transition using segues
 * automatic instatiation of **custom** ViewControllers via the storyboard
 * passing variables to new VCs using prepareForSegue:sender: callback
 
-* * *
+![ScreenShot](screenshot.png)
 
 The project was inpired by a great series of blog posts by @dalacv.  
 You can find his original project on [WordSearcher](https://github.com/dalacv/WordSearcher) on [GitHub](http://www.github.com).  
@@ -14,8 +16,6 @@ His blog posts describing the project are located here:
 
 * [Rubymotion and Storyboards](http://dangerousapps.com/blog/2012/05/08/rubymotion-and-storyboards/)
 * [Rubymotion ViewController Setup And Uibutton Actions](http://dangerousapps.com/blog/2012/05/08/rubymotion-viewcontroller-setup-and-uibutton-actions/)
-
-### **Note:** *you no longer need to compile the storybord manually RubyMotion 1.4 will take care of that.*
 
 ### My code is different in two points:  
 
