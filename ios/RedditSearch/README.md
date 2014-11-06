@@ -1,5 +1,5 @@
-RedditSearch.app
-================
+Reddit Search.app
+=================
 
 This sample demonstrates the following concepts: Table View, Custom Table View Cells, Grand Central Dispatch, JSON.
 
