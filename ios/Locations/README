@@ -1,8 +1,0 @@
-Locations.app
-
-This sample demonstrates the following concepts: Table View, Core Location, Core Data.
-
-
-To use this app in the simulator, please update your location while running.
-
-Debug > Location > <new location>
