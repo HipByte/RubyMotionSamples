@@ -1,2 +1,6 @@
-# States
-A simple `ListView` example for RubyMotion Android. Prints out all the US states in a `ListView` using an `ArrayAdapter`
+States
+======
+
+This sample demonstrates the following concepts: List View, Web View.
+
+![ScreenShot](screenshot.png)
