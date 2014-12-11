@@ -1,0 +1,19 @@
+# -*- coding: utf-8 -*-
+$:.unshift("/Library/RubyMotion/lib")
+require 'motion/project/template/ios-watch-extension'
+
+begin
+  require 'bundler'
+  Bundler.require
+rescue LoadError
+end
+
+Motion::Project::App.setup do |app|
+  # Use `rake config' to see complete project settings.
+end
+
+require 'ib/tasks'
+
+IB::RakeTask.new do |project|
+  project.resource_directories = ['watch_app']
+end
