@@ -7,7 +7,4 @@ Motion::Project::App.setup do |app|
   app.frameworks += ['CoreLocation', 'MapKit', 'AddressBook']
 
   app.deployment_target = '7.1'
-
-  app.archs['iPhoneOS'] = ['arm64']
-  app.provisioning_profile = "/Users/lrz/Downloads/lrzarm64dev.mobileprovision"
 end

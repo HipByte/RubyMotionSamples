@@ -6,7 +6,5 @@ Motion::Project::App.setup do |app|
   # Use `rake config' to see complete project settings.
   app.name = 'Camera'
   app.info_plist['UIStatusBarHidden'] = true
-
-  app.provisioning_profile = "/Users/lrz/Downloads/lrzarm64dev.mobileprovision"
   app.deployment_target = '7.0'
 end

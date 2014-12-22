@@ -18,6 +18,4 @@ Motion::Project::App.setup do |app|
   app.target("extensions/custom-keyboard", :extension)
 
   app.target("frameworks/my-shared-framework", :framework)
-
-  app.provisioning_profile = "/Users/lrz/Downloads/lrzarm64dev.mobileprovision"
 end
