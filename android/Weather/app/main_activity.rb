@@ -28,7 +28,7 @@ class MainActivity < Android::App::Activity
   end
 
   def update_display(weather)
-    @temperature_label.text = "Temp: #{weather.temp} celcius"
+    @temperature_label.text = "Temp: #{weather.temp} celsius"
     @wind_direction_label.text = "Wind Direction: #{weather.wind_direction}"
     @wind_speed_label.text = "Wind Speed: #{weather.wind_speed} KM"
   end
