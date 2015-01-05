@@ -4,7 +4,7 @@ This repository contains a collection of RubyMotion examples.
 
 == Requirements
 
-* RubyMotion 2.0 or greater (see http://www.rubymotion.com).
+* RubyMotion 3.0 or greater (see http://www.rubymotion.com).
 
 == Projects
 
