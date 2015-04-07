@@ -11,5 +11,11 @@ end
 Motion::Project::App.setup do |app|
   # Use `rake config' to see complete project settings.
   app.name = 'BitWatch'
+  app.version = '1.0'
+  app.short_version = '1.0'
+  app.identifier = "com.rubymotion.#{app.name}"
+  app.icons << 'icon.png'
   app.target 'WatchApp', :extension
+  # app.codesign_certificate = 'XXXXXXXXXX'
+  # app.provisioning_profile = 'provisions/BitWatch.mobileprovision'
 end

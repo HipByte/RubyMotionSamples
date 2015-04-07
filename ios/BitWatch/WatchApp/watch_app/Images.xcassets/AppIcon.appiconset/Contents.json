@@ -1,32 +1,32 @@
 {
   "images" : [
     {
-      "size" : "14.5x14.5",
+      "size" : "24x24",
       "idiom" : "watch",
       "scale" : "2x",
-      "filename" : "NotificationCenter.png",
+      "filename" : "NotificationCenter-24@2x.png",
       "role" : "notificationCenter",
       "subtype" : "38mm"
     },
     {
-      "size" : "18x18",
+      "size" : "27.5x27.5",
       "idiom" : "watch",
       "scale" : "2x",
-      "filename" : "NotificationCenter-1.png",
+      "filename" : "NotificationCenter-27.5@2x.png",
       "role" : "notificationCenter",
       "subtype" : "42mm"
     },
     {
       "size" : "29x29",
       "idiom" : "watch",
-      "filename" : "CompanionSettings.png",
+      "filename" : "CompanionSettings-29@2x.png",
       "role" : "companionSettings",
       "scale" : "2x"
     },
     {
-      "size" : "29.3x29.3",
+      "size" : "29x29",
       "idiom" : "watch",
-      "filename" : "CompanionSettings-1.png",
+      "filename" : "CompanionSettings-29@3x.png",
       "role" : "companionSettings",
       "scale" : "3x"
     },
@@ -42,8 +42,8 @@
       "size" : "44x44",
       "idiom" : "watch",
       "scale" : "2x",
-      "filename" : "AppLauncher-1.png",
-      "role" : "appLauncher",
+      "filename" : "LongLook.png",
+      "role" : "longLook",
       "subtype" : "42mm"
     },
     {
@@ -61,6 +61,38 @@
       "filename" : "QuickLook-1.png",
       "role" : "quickLook",
       "subtype" : "42mm"
+    },
+    {
+      "role" : "appLauncher",
+      "size" : "44x44",
+      "idiom" : "watch",
+      "filename" : "AppLauncher-1.png",
+      "subtype" : "42mm",
+      "unassigned" : true,
+      "scale" : "2x"
+    },
+    {
+      "scale" : "2x",
+      "idiom" : "watch",
+      "filename" : "NotificationCenter.png",
+      "unassigned" : true,
+      "role" : "notificationCenter",
+      "subtype" : "38mm"
+    },
+    {
+      "scale" : "2x",
+      "idiom" : "watch",
+      "filename" : "NotificationCenter-1.png",
+      "unassigned" : true,
+      "role" : "notificationCenter",
+      "subtype" : "42mm"
+    },
+    {
+      "idiom" : "watch",
+      "filename" : "CompanionSettings-1.png",
+      "unassigned" : true,
+      "role" : "companionSettings",
+      "scale" : "3x"
     }
   ],
   "info" : {
