@@ -10,6 +10,7 @@ end
 
 Motion::Project::App.setup do |app|
   # Use `rake config' to see complete project settings.
+  app.deployment_target = '8.2'
 
   # app.codesign_certificate = 'XXXXXXXXXX'
   # app.provisioning_profile = '../provisions/BitWatchWatchKitExtension.mobileprovision'
