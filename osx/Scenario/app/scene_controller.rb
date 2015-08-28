@@ -83,9 +83,9 @@ class SceneController < NSViewController
     rootNode = self.view.scene.rootNode
     moonNode = rootNode.childNodeWithName "moon", recursively:false
     @moonMaterial = moonNode.geometry.firstMaterial
-    @moonMaterial.normal.minificationFilter = SCNLinearFiltering
-    @moonMaterial.normal.magnificationFilter = SCNLinearFiltering
-    @moonMaterial.normal.mipFilter = SCNLinearFiltering
+    @moonMaterial.normal.minificationFilter = SCNFilterModeLinear
+    @moonMaterial.normal.magnificationFilter = SCNFilterModeLinear
+    @moonMaterial.normal.mipFilter = SCNFilterModeLinear
   end
   
   
