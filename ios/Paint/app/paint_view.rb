@@ -28,7 +28,7 @@ class PaintView < UIView
     bp.lineWidth = 3.0
     random_color = begin
       red, green, blue = rand(100)/100.0, rand(100)/100.0, rand(100)/100.0
-      UIColor.alloc.initWithRed(red/100.0, green:green, blue:blue, alpha:1.0)
+      UIColor.alloc.initWithRed(red, green:green, blue:blue, alpha:1.0)
     end
     @paths << [bp, random_color]
   end
