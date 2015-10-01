@@ -34,9 +34,11 @@ class MainScene < MG::Scene
     button_start.font_size = 30
     button_start.position = [MG::Director.shared.size.width / 2.0, MG::Director.shared.size.height / 2.0]
     button_start.on_touch do |type|
-      add_bird
-      start_update
-      button_start.visible = false
+      if type == :end
+        add_bird
+        start_update
+        button_start.visible = false
+      end
     end
     add button_start
   end
