@@ -23,6 +23,7 @@ class MainScene < MG::Scene
     on_contact_begin do
       MG::Audio.play('sfx_hit')
       puts "game over!"
+      @bird.blink 3, 1
       true
     end
 
