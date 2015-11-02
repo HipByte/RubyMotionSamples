@@ -6,7 +6,7 @@ class TimerController < UIViewController
 
     @state = UILabel.new
     @state.font = UIFont.systemFontOfSize(90)
-    @state.text = 'Tap to start'
+    @state.text = 'Push to start'
     @state.textAlignment = UITextAlignmentCenter
     @state.textColor = UIColor.darkGrayColor
     @state.backgroundColor = UIColor.clearColor
