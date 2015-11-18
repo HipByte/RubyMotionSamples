@@ -9,8 +9,7 @@ class MainScene < MG::Scene
 
     add_skyline
     add_ground
-    add_bird
-
+    start_game
     @pipe_update = 0
     @random = Random.new
 
@@ -24,10 +23,25 @@ class MainScene < MG::Scene
     on_contact_begin do
       MG::Audio.play('sfx_hit')
       puts "game over!"
+      @bird.blink 3, 1
       true
     end
 
-    start_update
+  end
+
+  def start_game
+    button_start = MG::Button.new()
+    button_start.text = "Start Game"
+    button_start.font_size = 30
+    button_start.position = [MG::Director.shared.size.width / 2.0, MG::Director.shared.size.height / 2.0]
+    button_start.on_touch do |type|
+      if type == :end
+        add_bird
+        start_update
+        button_start.visible = false
+      end
+    end
+    add button_start
   end
 
   def add_skyline
