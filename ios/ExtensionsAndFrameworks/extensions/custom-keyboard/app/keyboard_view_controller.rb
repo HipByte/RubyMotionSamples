@@ -100,12 +100,12 @@ class KeyboardViewController < UIInputViewController
     spaceButtonRightConstraint = NSLayoutConstraint.constraintWithItem(spaceButton,
       attribute: NSLayoutAttributeRight,
       relatedBy: NSLayoutRelationEqual,
-      toItem: dotButton, attribute: NSLayoutAttributeLeft,
+      toItem: dotButton,
       multiplier: 1.0, constant: -8.0)
     spaceButtonCenterYConstraint = NSLayoutConstraint.constraintWithItem(spaceButton,
       attribute: NSLayoutAttributeCenterY,
       relatedBy: NSLayoutRelationEqual,
-      toItem: self.view, attribute: NSLayoutAttributeCenterY,
+      toItem: self.view,
       multiplier: 1.0, constant: 0.0)
 
     self.view.addSubview(spaceButton)
@@ -122,12 +122,12 @@ class KeyboardViewController < UIInputViewController
     bkspButtonLeftConstraint = NSLayoutConstraint.constraintWithItem(bkspButton,
       attribute: NSLayoutAttributeLeft,
       relatedBy: NSLayoutRelationEqual,
-      toItem: dashButton, attribute: NSLayoutAttributeRight,
+      toItem: dashButton,
       multiplier: 1.0, constant: 8.0)
     bkspButtonCenterYConstraint = NSLayoutConstraint.constraintWithItem(bkspButton,
       attribute: NSLayoutAttributeCenterY,
       relatedBy: NSLayoutRelationEqual,
-      toItem: self.view, attribute: NSLayoutAttributeCenterY,
+      toItem: self.view,
       multiplier: 1.0, constant: 0.0)
 
     self.view.addSubview(bkspButton)
@@ -152,13 +152,12 @@ class KeyboardViewController < UIInputViewController
     nextKeyboardButtonLeftSideConstraint = NSLayoutConstraint.constraintWithItem(self.nextKeyboardButton,
       attribute: NSLayoutAttributeLeft,
       relatedBy: NSLayoutRelationEqual,
-      toItem: self.view, attribute: NSLayoutAttributeLeft,
+      toItem: self.view,
       multiplier: 1.0, constant: 4.0)
     nextKeyboardButtonBottomConstraint = NSLayoutConstraint.constraintWithItem(self.nextKeyboardButton,
       attribute: NSLayoutAttributeBottom,
       relatedBy: NSLayoutRelationEqual,
-      toItem:
-      self.view, attribute: NSLayoutAttributeBottom,
+      toItem: self.view,
       multiplier: 1.0, constant: -4.0)
 
     self.view.addSubview(self.nextKeyboardButton)
