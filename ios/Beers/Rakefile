@@ -7,4 +7,10 @@ Motion::Project::App.setup do |app|
   app.frameworks += ['CoreLocation', 'MapKit', 'AddressBook']
 
   app.deployment_target = '7.1'
+
+  app.info_plist['NSAppTransportSecurity'] = {
+    'NSExceptionDomains' => {
+      'en.wikipedia.org' => { 'NSTemporaryExceptionAllowsInsecureHTTPLoads' => true }
+    }
+  }
 end
