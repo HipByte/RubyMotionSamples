@@ -6,5 +6,6 @@ Motion::Project::App.setup do |app|
   # Use `rake config' to see complete project settings.
   app.name = 'Camera'
   app.info_plist['UIStatusBarHidden'] = true
+  app.info_plist['NSCameraUsageDescription'] = 'This app uses camera'
   app.deployment_target = '7.0'
 end
