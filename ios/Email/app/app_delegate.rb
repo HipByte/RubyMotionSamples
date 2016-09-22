@@ -26,21 +26,29 @@ class MainController < UIViewController
   end
   
   def presentEmailEditor
-    # called when the button is pressed
-    
-    # http://stackoverflow.com/a/1513433/94154
-    #
-    # MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
-    # controller.mailComposeDelegate = self;
-    # [controller setSubject:@"My Subject"];
-    # [controller setMessageBody:@"Hello there." isHTML:NO]; 
-    # if (controller) [self presentModalViewController:controller animated:YES];
-    # [controller release];
-    
-    controller = MFMailComposeViewController.alloc.init
-    controller.mailComposeDelegate = self
-    controller.setSubject("My Subject")
-    controller.setMessageBody("Hello there", isHTML:false)
+    unless MFMailComposeViewController.canSendMail
+      controller = UIAlertController.alertControllerWithTitle("Alert", message:"Cannot send Email on Simulator", preferredStyle:UIAlertControllerStyleAlert)
+      controller.addAction(UIAlertAction.actionWithTitle:"OK",style:UIAlertActionStyleDefault, handler:lambda { |action|
+      })
+    else
+
+      # called when the button is pressed
+      
+      # http://stackoverflow.com/a/1513433/94154
+      #
+      # MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
+      # controller.mailComposeDelegate = self;
+      # [controller setSubject:@"My Subject"];
+      # [controller setMessageBody:@"Hello there." isHTML:NO]; 
+      # if (controller) [self presentModalViewController:controller animated:YES];
+      # [controller release];
+      
+      controller = MFMailComposeViewController.alloc.init
+      controller.mailComposeDelegate = self
+      controller.setSubject("My Subject")
+      controller.setMessageBody("Hello there", isHTML:false)
+    end
+
     self.presentModalViewController(controller, animated:true)
   end
   
