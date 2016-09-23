@@ -12,6 +12,21 @@ class SceneController < NSViewController
         view.scene = SCNScene.sceneWithURL url, options:nil, error:nil
       end
     end
+
+    attributes = [
+      NSOpenGLPFAAccelerated,
+      NSOpenGLPFAColorSize, 32,
+      NSOpenGLPFADepthSize, 24,
+    ]
+
+    attributes_pointer = Pointer.new("I", attributes.size)
+    attributes.each_with_index do |v, i|
+      attributes_pointer[i] = v
+    end
+
+    self.view.pixelFormat = NSOpenGLPixelFormat.alloc.initWithAttributes(attributes_pointer)
+    self.view.openGLContext = NSOpenGLContext.alloc.initWithFormat(self.view.pixelFormat, shareContext:nil)
+
     Dispatch::Queue.current.after(0.1) { configure }
   end
     
