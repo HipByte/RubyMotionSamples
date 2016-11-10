@@ -12,8 +12,6 @@ Motion::Project::App.setup do |app|
   # Use `rake config' to see complete project settings.
   app.name = 'ExtensionsAndFrameworks'
 
-  app.deployment_target = '8.0'
-
   app.target("extensions/today-extension", :extension)
   app.target("extensions/custom-keyboard", :extension)
 
