@@ -37,6 +37,7 @@ class MainActivity < Android::App::Activity
     # Create the drawer toggler.
     @drawerToggle = Android::Support::V4::App::ActionBarDrawerToggle.new(self, @drawerLayout, resources.getIdentifier('ic_drawer', 'drawable', packageName), resources.getIdentifier('drawer_open', 'string', packageName), resources.getIdentifier('drawer_close', 'string', packageName))
     @drawerLayout.drawerListener = @drawerToggle
+    @drawerToggle.syncState
 
     @fragments = [nil, nil, nil, nil, nil, nil]
     selectItem(0) unless savedInstanceState
@@ -50,13 +51,6 @@ class MainActivity < Android::App::Activity
     else
       super
     end
-  end
-
-  # Called when the activity start-up is complete.
-  def onPostCreate(savedInstanceState)
-    super
-    # Sync the drawer toggle state.
-    @drawerToggle.syncState
   end
 
   # Called when the device configuration changes.
