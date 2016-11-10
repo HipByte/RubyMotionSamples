@@ -16,7 +16,9 @@ Motion::Project::App.setup do |app|
   app.short_version = '1.0'
   app.identifier = "com.rubymotion.#{app.name}"
   app.icons << 'icon.png'
-  app.target 'WatchApp', :extension
+  app.target 'WatchAppV2', :watchapp
+  # app.target 'WatchApp', :extension
+
   # app.codesign_certificate = 'XXXXXXXXXX'
   # app.provisioning_profile = 'provisions/BitWatch.mobileprovision'
 end

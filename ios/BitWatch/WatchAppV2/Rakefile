@@ -1,0 +1,24 @@
+# -*- coding: utf-8 -*-
+$:.unshift("/Library/RubyMotion/lib")
+require 'motion/project/template/ios-watch-extension'
+
+begin
+  require 'bundler'
+  Bundler.require
+rescue LoadError
+end
+
+Motion::Project::App.setup do |app|
+  # Use `rake config' to see complete project settings.
+
+  # app.codesign_certificate = 'XXXXXXXXXX'
+  # app.provisioning_profile = '../provisions/BitWatchWatchKitExtension.mobileprovision'
+  # app.watch_app_config.codesign_certificate = app.codesign_certificate
+  # app.watch_app_config.provisioning_profile = '../provisions/BitWatchWatchApp.mobileprovision'
+end
+
+require 'ib/tasks'
+
+IB::RakeTask.new do |project|
+  project.resource_directories = ['watch_app']
+end
