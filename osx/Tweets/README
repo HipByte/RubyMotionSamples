@@ -1,7 +1,0 @@
-Tweets.app
-
-This sample demonstrates the following concepts: NSTableView, NSImageCell,
-JSON parsing and Grand Central Dispatch.
-
-The data_parser.rb, tweet.rb and json_parser.rb files are exactly the same
-as in the ios/Tweets sample.
