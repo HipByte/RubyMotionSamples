@@ -8,7 +8,7 @@ This repository contains a collection of RubyMotion examples.
 
 ## Projects
 
-Each one of the sub-directories in this repository is a genuine RubyMotion project that demonstrates one or more particular features of iOS, OS X or Android.
+Each one of the sub-directories in this repository is a genuine RubyMotion project that demonstrates one or more particular features of iOS, OS X, watchOS, tvOS or Android.
 
 The `game` directory includes samples using the new RubyMotion 4.0 cross-platform game API. Make sure to install the `motion-game` gem before building them.
 
