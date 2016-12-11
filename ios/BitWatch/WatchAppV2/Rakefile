@@ -15,6 +15,17 @@ Motion::Project::App.setup do |app|
   # app.provisioning_profile = '../provisions/BitWatchWatchKitExtension.mobileprovision'
   # app.watch_app_config.codesign_certificate = app.codesign_certificate
   # app.watch_app_config.provisioning_profile = '../provisions/BitWatchWatchApp.mobileprovision'
+  app.frameworks << 'ClockKit'
+
+  app.info_plist['CLKComplicationPrincipalClass'] = 'ComplicationController'
+  app.info_plist['CLKComplicationDefaultImagesAssetName'] = 'Complication'
+  app.info_plist['CLKComplicationSupportedFamilies'] = %w(
+    CLKComplicationFamilyModularLarge
+    CLKComplicationFamilyUtilitarianSmall
+    CLKComplicationFamilyUtilitarianLarge
+    CLKComplicationFamilyCircularSmall
+  )
+  app.info_plist['WKExtensionDelegateClassName'] = 'ExtensionDelegate'
 end
 
 require 'ib/tasks'
