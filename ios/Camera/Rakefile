@@ -7,4 +7,5 @@ Motion::Project::App.setup do |app|
   app.name = 'Camera'
   app.info_plist['UIStatusBarHidden'] = true
   app.info_plist['NSCameraUsageDescription'] = 'This app uses camera'
+  app.info_plist['NSPhotoLibraryUsageDescription'] = 'This app uses Photo Library'
 end
