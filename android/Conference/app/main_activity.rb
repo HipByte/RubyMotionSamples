@@ -39,7 +39,7 @@ class MainActivity < Android::App::Activity
     @drawerLayout.drawerListener = @drawerToggle
     @drawerToggle.syncState
 
-    @fragments = [nil, nil, nil, nil, nil, nil]
+    @fragments = [nil, nil, nil, nil, nil]
     selectItem(0) unless savedInstanceState
   end
 
