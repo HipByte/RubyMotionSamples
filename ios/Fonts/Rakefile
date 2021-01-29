@@ -1,4 +1,5 @@
 $:.unshift("/Library/RubyMotion/lib")
+$:.unshift("~/.rubymotion/rubymotion-templates")
 require 'motion/project/template/ios'
 
 Motion::Project::App.setup do |app|
