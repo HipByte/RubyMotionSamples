@@ -12,6 +12,7 @@ class DetailController < UIViewController
 
   def viewDidLoad
     navigationItem.title = "Sample Text"
+    navigationItem.rightBarButtonItem = UIBarButtonItem.alloc.initWithBarButtonSystemItem(UIBarButtonSystemItemCompose, target: self, action: :display_font)
   end
 
   def viewWillAppear(animated)
@@ -46,5 +47,11 @@ class DetailController < UIViewController
 
     After years of iOS work, RubyMotion seems like a thousand kittens playing the piano while sliding down a double-rainbow.
 EOS
+  end
+
+  def display_font
+    @dynamic_controller ||= DynamicController.alloc.init
+    @dynamic_controller.selected_font(@font_name)
+    self.navigationController.pushViewController(@dynamic_controller, animated:true)
   end
 end
